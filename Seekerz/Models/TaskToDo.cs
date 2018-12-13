@@ -5,20 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seekerz.Models
 {
-    public class Task
+    public class TaskToDo
     {
         [Key]
-        public int TaskId { get; set; }
+        public int TaskToDoId { get; set; }
 
         [Required]
         public string NewTask { get; set; }
 
-
-
         public DateTime CompleteDate { get; set; }
-
-
-
 
         public bool IsCompleted { get; set; }
 
@@ -26,8 +21,6 @@ namespace Seekerz.Models
         [Display(Name = "Position")]
         public int JobId { get; set; }
 
-        public Job Job { get; set; }
-
-
+        public Job Jobs { get; set; }
     }
 }

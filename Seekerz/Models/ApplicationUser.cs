@@ -20,10 +20,10 @@ namespace Seekerz.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-
-
         // Set up PK -> FK relationships to other objects
-        public virtual ICollection<Job> UserJobs { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
+
+        public virtual ICollection<QA> QAs { get; set; }
 
 
     }

@@ -12,18 +12,14 @@ namespace Seekerz.Models
         public int JobId { get; set; }
 
         [Required]
-        public string UserJob { get; set; }
+        public string Position { get; set; }
 
         public string PersonalNotes { get; set; }
 
         public string ToldNss { get; set; }
 
         [Required]
-
         public bool IsActive { get; set; }
-
-
-
 
         [Required]
         public string UserId { get; set; }
@@ -36,9 +32,7 @@ namespace Seekerz.Models
 
         public Company Company { get; set; }
 
-        public virtual ICollection<QA> UserQuestionsAsked { get; set; }
-
-        public virtual ICollection<Task> UserTasks { get; set; }
+        public virtual ICollection<TaskToDo> UserTasks { get; set; }
 
     }
 }

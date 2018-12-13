@@ -16,12 +16,10 @@ namespace Seekerz.Data
         { }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
         public DbSet<Company> Company { get; set; }
         public DbSet<Job> Job { get; set; }
-
         public DbSet<QA> QA { get; set; }
-        public DbSet<Task> Task { get; set; }
+        public DbSet<TaskToDo> Task { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,11 +33,11 @@ namespace Seekerz.Data
             // Restrict deletion of related order when Tasks entry is removed
             modelBuilder.Entity<Job>()
                 .HasMany(j => j.UserTasks)
-                .WithOne(l => l.Job)
+                .WithOne(l => l.Jobs)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Company>()
-                .HasMany(c => c.CompanyJobs)
+                .HasMany(c => c.Jobs)
                 .WithOne(l => l.Company)
                 .OnDelete(DeleteBehavior.Restrict);
 
@@ -114,7 +112,7 @@ namespace Seekerz.Data
                 new Job()
                 {
                     JobId = 1,
-                    UserJob = "Software Developer 1",
+                    Position = "Software Developer 1",
                     PersonalNotes = "Liked the Company and is growing dramatically over the next year.",
                     ToldNss = "Nss KNows - employer came in to NSS to interview",
                     IsActive = true,
@@ -124,7 +122,7 @@ namespace Seekerz.Data
                 new Job()
                 {
                     JobId = 2,
-                    UserJob = "Software Developer",
+                    Position = "Software Developer",
                     PersonalNotes = "Had a mock interview that could turn into a real one.",
                     ToldNss = "Kristin knows about the mock interview might turn into a real one",
                     IsActive = true,
@@ -134,7 +132,7 @@ namespace Seekerz.Data
                 new Job()
                 {
                     JobId = 3,
-                    UserJob = "Technical Operations",
+                    Position = "Technical Operations",
                     PersonalNotes = "Interviewed with Chase Ramsey - have a 2nd interview scheduled",
                     ToldNss = "knows that I have a technical interview scheduled",
                     IsActive = true,
@@ -142,32 +140,33 @@ namespace Seekerz.Data
                     CompanyId = 1
                 }
             );
-            modelBuilder.Entity<Task>().HasData(
-               new Task()
+            modelBuilder.Entity<TaskToDo>().HasData(
+               new TaskToDo()
                {
-                   TaskId = 1,
+                   TaskToDoId = 1,
                    NewTask = "Study-Technical Interview",
                    CompleteDate = new DateTime(2018, 12, 18, 13, 30, 00),
                    IsCompleted = false,
                    JobId = 3
                },
-               new Task()
+               new TaskToDo()
                {
-                   TaskId = 2,
+                   TaskToDoId = 2,
                    NewTask = "Follow up with Claris Health",
                    CompleteDate = new DateTime(2018, 12, 17, 12, 30, 00),
                    IsCompleted = false,
                    JobId = 1
                },
-               new Task()
+               new TaskToDo()
                {
-                   TaskId = 3,
+                   TaskToDoId = 3,
                    NewTask = "Follow up with Infoworks",
                    CompleteDate = new DateTime(2018, 12, 17, 12, 30, 00),
                    IsCompleted = false,
                    JobId = 3
                }
                );
+
             modelBuilder.Entity<QA>().HasData(
                new QA()
                {

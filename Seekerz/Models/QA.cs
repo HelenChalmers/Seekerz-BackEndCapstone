@@ -11,8 +11,6 @@ namespace Seekerz.Models
         [Key]
         public int QAId { get; set; }
 
-
-
         [Required]
         public string Question { get; set; }
 

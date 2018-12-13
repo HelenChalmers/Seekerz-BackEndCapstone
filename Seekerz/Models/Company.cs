@@ -14,14 +14,11 @@ namespace Seekerz.Models
         public string Name { get; set; }
 
         [Required]
-
         public string Location { get; set; }
-
-
 
         public string URL { get; set; }
 
-        public virtual ICollection<Job> CompanyJobs { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
 
 
     }
