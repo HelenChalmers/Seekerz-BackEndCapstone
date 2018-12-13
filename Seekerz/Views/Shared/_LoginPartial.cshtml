@@ -8,7 +8,13 @@
     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <a asp-area="" asp-controller="Job" asp-action="ArchivedIndex">Archived</a>
+            </li>
+            <li>
                 <a asp-area="" asp-controller="Companies" asp-action="Index">Company</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="QAs" asp-action="Index">Questions</a>
             </li>
             <li>
                 <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
@@ -18,6 +24,12 @@
             </li>
         </ul>
     </form>
+
+    <ul>
+        <form asp-controller="Jobs" asp-action="SearchResults" method="get" class="nav-search">
+            <input type="text" name="search" class="input-sm" placeholder="Search for a Position" />
+        </form>
+    </ul>
 }
 else
 {
