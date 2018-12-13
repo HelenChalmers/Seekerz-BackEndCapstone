@@ -10,23 +10,23 @@ using Seekerz.Models;
 
 namespace Seekerz.Controllers
 {
-    public class QAsController : Controller
+    public class TaskToDoesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public QAsController(ApplicationDbContext context)
+        public TaskToDoesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: QAs
+        // GET: TaskToDoes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.QA.Include(q => q.User);
+            var applicationDbContext = _context.TaskToDo.Include(t => t.Jobs);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: QAs/Details/5
+        // GET: TaskToDoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +34,42 @@ namespace Seekerz.Controllers
                 return NotFound();
             }
 
-            var qA = await _context.QA
-                .Include(q => q.User)
-                .FirstOrDefaultAsync(m => m.QAId == id);
-            if (qA == null)
+            var taskToDo = await _context.TaskToDo
+                .Include(t => t.Jobs)
+                .FirstOrDefaultAsync(m => m.TaskToDoId == id);
+            if (taskToDo == null)
             {
                 return NotFound();
             }
 
-            return View(qA);
+            return View(taskToDo);
         }
 
-        // GET: QAs/Create
+        // GET: TaskToDoes/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position");
             return View();
         }
 
-        // POST: QAs/Create
+        // POST: TaskToDoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("QAId,Question,Answer,Notes")] QA qA)
+        public async Task<IActionResult> Create([Bind("TaskToDoId,NewTask,CompleteDate,IsCompleted,JobId")] TaskToDo taskToDo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(qA);
+                _context.Add(taskToDo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", qA.UserId);
-            return View(qA);
+            ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
+            return View(taskToDo);
         }
 
-        // GET: QAs/Edit/5
+        // GET: TaskToDoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +77,23 @@ namespace Seekerz.Controllers
                 return NotFound();
             }
 
-            var qA = await _context.QA.FindAsync(id);
-            if (qA == null)
+            var taskToDo = await _context.TaskToDo.FindAsync(id);
+            if (taskToDo == null)
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", qA.UserId);
-            return View(qA);
+            ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
+            return View(taskToDo);
         }
 
-        // POST: QAs/Edit/5
+        // POST: TaskToDoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("QAId,Question,Answer,Notes,UserId")] QA qA)
+        public async Task<IActionResult> Edit(int id, [Bind("TaskToDoId,NewTask,CompleteDate,IsCompleted,JobId")] TaskToDo taskToDo)
         {
-            if (id != qA.QAId)
+            if (id != taskToDo.TaskToDoId)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace Seekerz.Controllers
             {
                 try
                 {
-                    _context.Update(qA);
+                    _context.Update(taskToDo);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!QAExists(qA.QAId))
+                    if (!TaskToDoExists(taskToDo.TaskToDoId))
                     {
                         return NotFound();
                     }
@@ -118,11 +118,11 @@ namespace Seekerz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", qA.UserId);
-            return View(qA);
+            ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
+            return View(taskToDo);
         }
 
-        // GET: QAs/Delete/5
+        // GET: TaskToDoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +130,31 @@ namespace Seekerz.Controllers
                 return NotFound();
             }
 
-            var qA = await _context.QA
-                .Include(q => q.User)
-                .FirstOrDefaultAsync(m => m.QAId == id);
-            if (qA == null)
+            var taskToDo = await _context.TaskToDo
+                .Include(t => t.Jobs)
+                .FirstOrDefaultAsync(m => m.TaskToDoId == id);
+            if (taskToDo == null)
             {
                 return NotFound();
             }
 
-            return View(qA);
+            return View(taskToDo);
         }
 
-        // POST: QAs/Delete/5
+        // POST: TaskToDoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var qA = await _context.QA.FindAsync(id);
-            _context.QA.Remove(qA);
+            var taskToDo = await _context.TaskToDo.FindAsync(id);
+            _context.TaskToDo.Remove(taskToDo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool QAExists(int id)
+        private bool TaskToDoExists(int id)
         {
-            return _context.QA.Any(e => e.QAId == id);
+            return _context.TaskToDo.Any(e => e.TaskToDoId == id);
         }
     }
 }
