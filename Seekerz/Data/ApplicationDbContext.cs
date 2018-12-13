@@ -19,7 +19,7 @@ namespace Seekerz.Data
         public DbSet<Company> Company { get; set; }
         public DbSet<Job> Job { get; set; }
         public DbSet<QA> QA { get; set; }
-        public DbSet<TaskToDo> Task { get; set; }
+        public DbSet<TaskToDo> TaskToDo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
