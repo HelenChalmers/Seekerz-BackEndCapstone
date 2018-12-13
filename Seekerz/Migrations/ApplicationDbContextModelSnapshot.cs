@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Seekerz.Data;
 
-namespace Seekerz.Data.Migrations
+namespace Seekerz.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181213005725_initial")]
-    partial class initial
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,8 +190,8 @@ namespace Seekerz.Data.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "3a8ae9d3-15cd-4cac-aeb9-c2896c20acde", AccessFailedCount = 0, ConcurrencyStamp = "2027f8ee-cb98-4a8d-97e7-1436e5b8ac69", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "Admina", LastName = "Straytor", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAEOtuz7pi+Tn5MmjKXer5I8AFd+C9u9VIJZTLHQxDEF6QFSL5ju7eoRRHqm4MwuMWuQ==", PhoneNumberConfirmed = false, SecurityStamp = "01a3cecd-d8ec-4eb4-8516-8476818331ae", TwoFactorEnabled = false, UserName = "Admina" },
-                        new { Id = "0336c1eb-6efa-454e-b688-72e39b410077", AccessFailedCount = 0, ConcurrencyStamp = "fde66f63-5dce-4a8d-8da8-6b79b9c8866b", Email = "hchalmers23@gmail.com", EmailConfirmed = true, FirstName = "Helen", LastName = "Chalmers", LockoutEnabled = false, NormalizedEmail = "HCHALMERS23@GMAIL.COM", NormalizedUserName = "HChALMERS23@GMAIL.COM", PhoneNumberConfirmed = false, SecurityStamp = "099f54fa-8bb8-4f60-8a08-ad2a20112e05", TwoFactorEnabled = false, UserName = "Helen" }
+                        new { Id = "d625e02a-6465-4802-a5b3-fd2c569447be", AccessFailedCount = 0, ConcurrencyStamp = "38fc3a33-94f8-4cc0-a65f-695aa01abcf2", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "Admina", LastName = "Straytor", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAEIz0gvXBXZmZNBxqx8uFhFJnaKaDM3W5b0IMBwgG5eQzEMfAg6I+qz4PR2Vek+gESQ==", PhoneNumberConfirmed = false, SecurityStamp = "ab81a3b7-d477-4220-9654-eb87ab445abc", TwoFactorEnabled = false, UserName = "Admina" },
+                        new { Id = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96", AccessFailedCount = 0, ConcurrencyStamp = "8d4b52af-8ebe-448c-91c6-69c5fdb0d6f2", Email = "hchalmers23@gmail.com", EmailConfirmed = true, FirstName = "Helen", LastName = "Chalmers", LockoutEnabled = false, NormalizedEmail = "HCHALMERS23@GMAIL.COM", NormalizedUserName = "HChALMERS23@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEC3wbonBQiEur2/9ud/KxenrnzTnRFt5rTIvxZ/0VxFO54QTJEGUYtoOLcKfQmZjxg==", PhoneNumberConfirmed = false, SecurityStamp = "44f944b5-6e99-46bb-b293-2e1d162057fb", TwoFactorEnabled = false, UserName = "Helen" }
                     );
                 });
 
@@ -252,9 +250,9 @@ namespace Seekerz.Data.Migrations
                     b.ToTable("Job");
 
                     b.HasData(
-                        new { JobId = 1, CompanyId = 2, IsActive = true, PersonalNotes = "Liked the Company and is growing dramatically over the next year.", Position = "Software Developer 1", ToldNss = "Nss KNows - employer came in to NSS to interview", UserId = "0336c1eb-6efa-454e-b688-72e39b410077" },
-                        new { JobId = 2, CompanyId = 3, IsActive = true, PersonalNotes = "Had a mock interview that could turn into a real one.", Position = "Software Developer", ToldNss = "Kristin knows about the mock interview might turn into a real one", UserId = "0336c1eb-6efa-454e-b688-72e39b410077" },
-                        new { JobId = 3, CompanyId = 1, IsActive = true, PersonalNotes = "Interviewed with Chase Ramsey - have a 2nd interview scheduled", Position = "Technical Operations", ToldNss = "knows that I have a technical interview scheduled", UserId = "0336c1eb-6efa-454e-b688-72e39b410077" }
+                        new { JobId = 1, CompanyId = 2, IsActive = true, PersonalNotes = "Liked the Company and is growing dramatically over the next year.", Position = "Software Developer 1", ToldNss = "Nss KNows - employer came in to NSS to interview", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" },
+                        new { JobId = 2, CompanyId = 3, IsActive = true, PersonalNotes = "Had a mock interview that could turn into a real one.", Position = "Software Developer", ToldNss = "Kristin knows about the mock interview might turn into a real one", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" },
+                        new { JobId = 3, CompanyId = 1, IsActive = true, PersonalNotes = "Interviewed with Chase Ramsey - have a 2nd interview scheduled", Position = "Technical Operations", ToldNss = "knows that I have a technical interview scheduled", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" }
                     );
                 });
 
@@ -281,9 +279,9 @@ namespace Seekerz.Data.Migrations
                     b.ToTable("QA");
 
                     b.HasData(
-                        new { QAId = 1, Answer = "OhmyZsh on Mac side and GitBash on WindowsSide", Notes = "Maize Analytics asked this", Question = "Tell me about what you use in the CommandLine", UserId = "0336c1eb-6efa-454e-b688-72e39b410077" },
-                        new { QAId = 2, Answer = "Confidence Level", Notes = "Kyle from Infoworks - during Mock Interview", Question = "What has been your greatest weakness", UserId = "0336c1eb-6efa-454e-b688-72e39b410077" },
-                        new { QAId = 3, Answer = "Hard Personalities to work with ", Notes = "Claris Health", Question = "What was your biggest challenge at NSS", UserId = "0336c1eb-6efa-454e-b688-72e39b410077" }
+                        new { QAId = 1, Answer = "OhmyZsh on Mac side and GitBash on WindowsSide", Notes = "Maize Analytics asked this", Question = "Tell me about what you use in the CommandLine", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" },
+                        new { QAId = 2, Answer = "Confidence Level", Notes = "Kyle from Infoworks - during Mock Interview", Question = "What has been your greatest weakness", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" },
+                        new { QAId = 3, Answer = "Hard Personalities to work with ", Notes = "Claris Health", Question = "What was your biggest challenge at NSS", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" }
                     );
                 });
 
@@ -306,7 +304,7 @@ namespace Seekerz.Data.Migrations
 
                     b.HasIndex("JobId");
 
-                    b.ToTable("Task");
+                    b.ToTable("TaskToDo");
 
                     b.HasData(
                         new { TaskToDoId = 1, CompleteDate = new DateTime(2018, 12, 18, 13, 30, 0, 0, DateTimeKind.Unspecified), IsCompleted = false, JobId = 3, NewTask = "Study-Technical Interview" },

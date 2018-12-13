@@ -72,7 +72,7 @@ namespace Seekerz.Data
             };
 
             var passwordHash2 = new PasswordHasher<ApplicationUser>();
-            user.PasswordHash = passwordHash2.HashPassword(Helen, "helen*23");
+            Helen.PasswordHash = passwordHash2.HashPassword(Helen, "helen*23");
             modelBuilder.Entity<ApplicationUser>().HasData(Helen);
 
 
