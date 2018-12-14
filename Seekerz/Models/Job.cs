@@ -19,6 +19,7 @@ namespace Seekerz.Models
         public string ToldNss { get; set; }
 
         [Required]
+        [Display(Name = "Is Active")]
         public bool IsActive { get; set; }
 
         [Required]

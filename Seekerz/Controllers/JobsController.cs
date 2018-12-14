@@ -49,7 +49,7 @@ namespace Seekerz.Controllers
         // GET: Jobs/Create
         public IActionResult Create()
         {
-            ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Location");
+            ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name");
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View();
         }
@@ -67,7 +67,7 @@ namespace Seekerz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Location", job.CompanyId);
+            ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name", job.CompanyId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", job.UserId);
             return View(job);
         }
