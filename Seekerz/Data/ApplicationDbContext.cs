@@ -82,28 +82,32 @@ namespace Seekerz.Data
                    CompanyId = 1,
                    Name = "Maize Analytics",
                    Location = "West End, Nashville",
-                   URL = "https://www.maizeanalytics.com/"
+                   URL = "https://www.maizeanalytics.com/",
+                   UserId = Helen.Id
                },
                new Company()
                {
                    CompanyId = 2,
                    Name = "Claris Health",
                    Location = "Nashville, TN",
-                   URL = "https://www.clarishealth.com/"
+                   URL = "https://www.clarishealth.com/",
+                   UserId = Helen.Id
                },
                new Company()
                {
                    CompanyId = 3,
                    Name = "Info Works",
                    Location = "Nashville, TN",
-                   URL = "https://www.infoworks.io/"
+                   URL = "https://www.infoworks.io/",
+                   UserId = Helen.Id
                },
                new Company()
                {
                    CompanyId = 4,
                    Name = "Ramsey Solutions",
                    Location = "Franklin, TN",
-                   URL = ""
+                   URL = "",
+                   UserId = user.Id
                }
 
            );
@@ -136,6 +140,16 @@ namespace Seekerz.Data
                     PersonalNotes = "Interviewed with Chase Ramsey - have a 2nd interview scheduled",
                     ToldNss = "knows that I have a technical interview scheduled",
                     IsActive = true,
+                    UserId = Helen.Id,
+                    CompanyId = 1
+                },
+                new Job()
+                {
+                    JobId = 4,
+                    Position = "Executive Assistant",
+                    PersonalNotes = "Over It",
+                    ToldNss = "They don't",
+                    IsActive = false,
                     UserId = Helen.Id,
                     CompanyId = 1
                 }
