@@ -70,11 +70,11 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Company company)
+        public async Task<IActionResult> Create([Bind("CompanyId,Name,Location,URL,UserId")] Company company)
         {
             //Remove user and userid
-            ModelState.Remove("Company.UserId");
-            ModelState.Remove("Company.User");
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
 
             if (ModelState.IsValid)
             {
