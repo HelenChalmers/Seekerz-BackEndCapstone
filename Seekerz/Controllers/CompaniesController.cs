@@ -36,11 +36,8 @@ namespace Seekerz.Controllers
             var user = await GetCurrentUserAsync();
 
             var usercompanies = _context.Company
-                .Include(c => c.Jobs)
                 .Where(c => c.UserId == user.Id)
                 .ToListAsync();
-
-   
             return View(await usercompanies);
         }
 
@@ -73,10 +70,24 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompanyId,Name,Location,URL")] Company company)
+        public async Task<IActionResult> Create(Company company)
         {
+            //Remove user and userid
+            ModelState.Remove("Company.UserId");
+            ModelState.Remove("Company.User");
+
             if (ModelState.IsValid)
             {
+                //Get Current User
+                var user = await GetCurrentUserAsync();
+
+                //Add user to model
+                company.User = user;
+
+                //Add userId to Model
+                company.UserId = user.Id;
+
+
                 _context.Add(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
