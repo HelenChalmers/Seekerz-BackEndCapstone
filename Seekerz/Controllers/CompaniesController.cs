@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,19 +12,36 @@ using Seekerz.Models;
 
 namespace Seekerz.Controllers
 {
+    [Authorize]
     public class CompaniesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CompaniesController(ApplicationDbContext context)
+        //method gets user
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public CompaniesController(ApplicationDbContext ctx,
+                          UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _context = ctx;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Companies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Company.ToListAsync());
+            //getting the user.
+            var user = await GetCurrentUserAsync();
+
+            var usercompanies = _context.Company
+                .Include(c => c.Jobs)
+                .Where(c => c.UserId == user.Id)
+                .ToListAsync();
+
+   
+            return View(await usercompanies);
         }
 
         // GET: Companies/Details/5
