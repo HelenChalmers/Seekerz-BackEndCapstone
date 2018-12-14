@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,15 @@ namespace Seekerz.Controllers
 {
     public class JobsController : Controller
     {
+        //Create variable to represent database
         private readonly ApplicationDbContext _context;
+
+        //Create variable to represent User Data
+        private readonly UserManager<ApplicationUser> _userManager;
+
+
+        //Create component to get current user from the _userManager variable
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         public JobsController(ApplicationDbContext context)
         {
@@ -47,6 +56,7 @@ namespace Seekerz.Controllers
         }
 
         // GET: Jobs/Create
+        
         public IActionResult Create()
         {
             ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name");
@@ -61,8 +71,25 @@ namespace Seekerz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("JobId,Position,PersonalNotes,ToldNss,IsActive,UserId,CompanyId")] Job job)
         {
+            //Remove User, UserId and IsActive
+            ModelState.Remove("Job.UserId");
+            ModelState.Remove("Job.User");
+            ModelState.Remove("Job.IsActive");
+
+            //Check if model state is valid
+
             if (ModelState.IsValid)
             {
+                //Get current user
+                var user = await GetCurrentUserAsync();
+
+                //Add user to Model
+                job.User = user;
+                job.UserId = user.Id;
+
+                //Set IsActive
+                job.IsActive = true;
+
                 _context.Add(job);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
