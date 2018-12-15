@@ -70,7 +70,7 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompanyId,Name,Location,URL,UserId")] Company company)
+        public async Task<IActionResult> Create(Company company)
         {
             //Remove user and userid
             ModelState.Remove("UserId");
@@ -87,7 +87,12 @@ namespace Seekerz.Controllers
                 //Add userId to Model
                 company.UserId = user.Id;
 
-
+                if (company.URL != null && !company.URL.Contains("http://") || !company.URL.Contains("https://"))
+                {
+                    string fixer = "http://";
+                    fixer += company.URL;
+                    company.URL = fixer;
+                }
                 _context.Add(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -116,15 +121,29 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CompanyId,Name,Location,URL")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("CompanyId,Name,Location,URL,UserId")] Company company)
         {
             if (id != company.CompanyId)
             {
                 return NotFound();
             }
 
+            //Remove user and userid
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
+
             if (ModelState.IsValid)
             {
+
+                //Get Current User
+                var user = await GetCurrentUserAsync();
+
+                //Add user to model
+                company.User = user;
+
+                //Add userId to Model
+                company.UserId = user.Id;
+
                 try
                 {
                     _context.Update(company);

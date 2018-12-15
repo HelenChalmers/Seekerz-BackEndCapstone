@@ -1,4 +1,4 @@
-﻿@model Seekerz.Models.Job
+﻿@model Seekerz.Models.JobViewModels.JobCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,34 +13,35 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Position" class="control-label"></label>
-                <input asp-for="Position" class="form-control" />
-                <span asp-validation-for="Position" class="text-danger"></span>
+                <label asp-for="Job.Position" class="control-label"></label>
+                <input asp-for="Job.Position" class="form-control" />
+                <span asp-validation-for="Job.Position" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PersonalNotes" class="control-label"></label>
-                <input asp-for="PersonalNotes" class="form-control" />
-                <span asp-validation-for="PersonalNotes" class="text-danger"></span>
+                <label asp-for="Job.PersonalNotes" class="control-label"></label>
+                <input asp-for="Job.PersonalNotes" class="form-control" />
+                <span asp-validation-for="Job.PersonalNotes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ToldNss" class="control-label"></label>
-                <input asp-for="ToldNss" class="form-control" />
-                <span asp-validation-for="ToldNss" class="text-danger"></span>
+                <label asp-for="Job.ToldNss" class="control-label"></label>
+                <input asp-for="Job.ToldNss" class="form-control" />
+                <span asp-validation-for="Job.ToldNss" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
                     </label>
                 </div>
-            </div>
+            </div>*@
             @*<div class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
                 <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>*@
             <div class="form-group">
-                <label asp-for="CompanyId" class="control-label"></label>
-                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+                <label asp-for="Job.CompanyId" class="control-label"></label>
+                <select asp-for="Job.CompanyId" class="form-control" asp-items="Model.UsersCompanies"></select>
+                <span asp-validation-for="Job.CompanyId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
