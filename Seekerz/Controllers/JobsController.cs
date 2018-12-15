@@ -8,25 +8,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Seekerz.Data;
 using Seekerz.Models;
+using Seekerz.Models.JobViewModels;
 
 namespace Seekerz.Controllers
 {
     public class JobsController : Controller
     {
-        //Create variable to represent database
         private readonly ApplicationDbContext _context;
 
-        //Create variable to represent User Data
         private readonly UserManager<ApplicationUser> _userManager;
 
-
-        //Create component to get current user from the _userManager variable
-        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
-
-        public JobsController(ApplicationDbContext context)
+        public JobsController(ApplicationDbContext ctx,
+                          UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _context = ctx;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Jobs
         public async Task<IActionResult> Index()
@@ -57,11 +56,39 @@ namespace Seekerz.Controllers
 
         // GET: Jobs/Create
         
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name");
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
-            return View();
+            var user = await GetCurrentUserAsync();
+
+            List<Company> AllCompanies = await _context.Company.Where(c => c.UserId == user.Id).ToListAsync();
+
+            List<SelectListItem> usersCompanies = new List<SelectListItem>();
+
+            foreach (Company c in AllCompanies)
+            {
+                SelectListItem sli = new SelectListItem();
+                sli.Text = c.Name;
+                sli.Value = c.CompanyId.ToString();
+                usersCompanies.Add(sli);
+            };
+            //Buils a select item "select company" and giving a value of 0
+            SelectListItem defaultSli = new SelectListItem
+            {
+                Text = "Select Company",
+                Value = "0"
+            };
+
+            //Sets it at position 0
+            usersCompanies.Insert(0, defaultSli);
+
+            JobCreateViewModel viewmodel = new JobCreateViewModel
+            {
+                UsersCompanies = usersCompanies
+            };
+
+            //ViewData["CompanyId"] = new SelectList(_context.Company.Where(c => c.UserId == user.Id.ToString()), "CompanyId", "Name");
+            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            return View(viewmodel);
         }
 
         // POST: Jobs/Create
@@ -69,34 +96,31 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("JobId,Position,PersonalNotes,ToldNss,IsActive,UserId,CompanyId")] Job job)
+        public async Task<IActionResult> Create(JobCreateViewModel viewModel)
         {
             //Remove User, UserId and IsActive
-            ModelState.Remove("Job.UserId");
             ModelState.Remove("Job.User");
-            ModelState.Remove("Job.IsActive");
+            ModelState.Remove("Job.UserId");
+            //ModelState.Remove("Job.IsActive");
 
-            //Check if model state is valid
-
-            if (ModelState.IsValid)
-            {
-                //Get current user
-                var user = await GetCurrentUserAsync();
+            //Get current user
+            ApplicationUser user = await GetCurrentUserAsync();
 
                 //Add user to Model
-                job.User = user;
-                job.UserId = user.Id;
-
+                viewModel.Job.User = user;
+                viewModel.Job.UserId = user.Id;
                 //Set IsActive
-                job.IsActive = true;
+                viewModel.Job.IsActive = true;
 
-                _context.Add(job);
+            //Check if model state is valid
+            if (ModelState.IsValid)
+            {
+                _context.Add(viewModel.Job);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
-            ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name", job.CompanyId);
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", job.UserId);
-            return View(job);
+           
+            return View(viewModel);
         }
 
         // GET: Jobs/Edit/5

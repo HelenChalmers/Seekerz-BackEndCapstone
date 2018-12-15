@@ -10,8 +10,8 @@ using Seekerz.Data;
 namespace Seekerz.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181213154332_initial")]
-    partial class initial
+    [Migration("20181214204546_Userid")]
+    partial class Userid
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -192,8 +192,8 @@ namespace Seekerz.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "d625e02a-6465-4802-a5b3-fd2c569447be", AccessFailedCount = 0, ConcurrencyStamp = "38fc3a33-94f8-4cc0-a65f-695aa01abcf2", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "Admina", LastName = "Straytor", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAEIz0gvXBXZmZNBxqx8uFhFJnaKaDM3W5b0IMBwgG5eQzEMfAg6I+qz4PR2Vek+gESQ==", PhoneNumberConfirmed = false, SecurityStamp = "ab81a3b7-d477-4220-9654-eb87ab445abc", TwoFactorEnabled = false, UserName = "Admina" },
-                        new { Id = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96", AccessFailedCount = 0, ConcurrencyStamp = "8d4b52af-8ebe-448c-91c6-69c5fdb0d6f2", Email = "hchalmers23@gmail.com", EmailConfirmed = true, FirstName = "Helen", LastName = "Chalmers", LockoutEnabled = false, NormalizedEmail = "HCHALMERS23@GMAIL.COM", NormalizedUserName = "HChALMERS23@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEC3wbonBQiEur2/9ud/KxenrnzTnRFt5rTIvxZ/0VxFO54QTJEGUYtoOLcKfQmZjxg==", PhoneNumberConfirmed = false, SecurityStamp = "44f944b5-6e99-46bb-b293-2e1d162057fb", TwoFactorEnabled = false, UserName = "Helen" }
+                        new { Id = "8c41e75d-0923-4cb0-8e10-3d7973b9a8cd", AccessFailedCount = 0, ConcurrencyStamp = "1a548e30-0043-4adc-8aad-746efbc8084f", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "Admina", LastName = "Straytor", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAEK7pLkhAyQQ6xyBCQAKyYZlJ80NkSvT5aVESrWOiCLxkjpU/Bn+BXtR9+o4BM8o8uA==", PhoneNumberConfirmed = false, SecurityStamp = "15a08eab-6d80-4740-8c9a-4cef7e7603fd", TwoFactorEnabled = false, UserName = "Admina" },
+                        new { Id = "866658cd-4f6a-4a4d-bca6-4b6327b98d42", AccessFailedCount = 0, ConcurrencyStamp = "5aa57422-7f65-4ec7-9397-7c3eda74007f", Email = "hchalmers23@gmail.com", EmailConfirmed = true, FirstName = "Helen", LastName = "Chalmers", LockoutEnabled = false, NormalizedEmail = "HCHALMERS23@GMAIL.COM", NormalizedUserName = "HChALMERS23@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEIH5TRyt2fhpCY+oGg9AjVwPBVp0nvW41o0c0Gjbd8ZKjbUA3bhgAh5HxHjgnQ1Zdw==", PhoneNumberConfirmed = false, SecurityStamp = "d6ee4850-ddc4-4ab6-b507-49ad70be02ab", TwoFactorEnabled = false, UserName = "Helen" }
                     );
                 });
 
@@ -211,15 +211,20 @@ namespace Seekerz.Migrations
 
                     b.Property<string>("URL");
 
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
                     b.HasKey("CompanyId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Company");
 
                     b.HasData(
-                        new { CompanyId = 1, Location = "West End, Nashville", Name = "Maize Analytics", URL = "https://www.maizeanalytics.com/" },
-                        new { CompanyId = 2, Location = "Nashville, TN", Name = "Claris Health", URL = "https://www.clarishealth.com/" },
-                        new { CompanyId = 3, Location = "Nashville, TN", Name = "Info Works", URL = "https://www.infoworks.io/" },
-                        new { CompanyId = 4, Location = "Franklin, TN", Name = "Ramsey Solutions", URL = "" }
+                        new { CompanyId = 1, Location = "West End, Nashville", Name = "Maize Analytics", URL = "https://www.maizeanalytics.com/", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
+                        new { CompanyId = 2, Location = "Nashville, TN", Name = "Claris Health", URL = "https://www.clarishealth.com/", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
+                        new { CompanyId = 3, Location = "Nashville, TN", Name = "Info Works", URL = "https://www.infoworks.io/", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
+                        new { CompanyId = 4, Location = "Franklin, TN", Name = "Ramsey Solutions", URL = "", UserId = "8c41e75d-0923-4cb0-8e10-3d7973b9a8cd" }
                     );
                 });
 
@@ -252,9 +257,10 @@ namespace Seekerz.Migrations
                     b.ToTable("Job");
 
                     b.HasData(
-                        new { JobId = 1, CompanyId = 2, IsActive = true, PersonalNotes = "Liked the Company and is growing dramatically over the next year.", Position = "Software Developer 1", ToldNss = "Nss KNows - employer came in to NSS to interview", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" },
-                        new { JobId = 2, CompanyId = 3, IsActive = true, PersonalNotes = "Had a mock interview that could turn into a real one.", Position = "Software Developer", ToldNss = "Kristin knows about the mock interview might turn into a real one", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" },
-                        new { JobId = 3, CompanyId = 1, IsActive = true, PersonalNotes = "Interviewed with Chase Ramsey - have a 2nd interview scheduled", Position = "Technical Operations", ToldNss = "knows that I have a technical interview scheduled", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" }
+                        new { JobId = 1, CompanyId = 2, IsActive = true, PersonalNotes = "Liked the Company and is growing dramatically over the next year.", Position = "Software Developer 1", ToldNss = "Nss KNows - employer came in to NSS to interview", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
+                        new { JobId = 2, CompanyId = 3, IsActive = true, PersonalNotes = "Had a mock interview that could turn into a real one.", Position = "Software Developer", ToldNss = "Kristin knows about the mock interview might turn into a real one", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
+                        new { JobId = 3, CompanyId = 1, IsActive = true, PersonalNotes = "Interviewed with Chase Ramsey - have a 2nd interview scheduled", Position = "Technical Operations", ToldNss = "knows that I have a technical interview scheduled", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
+                        new { JobId = 4, CompanyId = 1, IsActive = false, PersonalNotes = "Over It", Position = "Executive Assistant", ToldNss = "They don't", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" }
                     );
                 });
 
@@ -281,9 +287,9 @@ namespace Seekerz.Migrations
                     b.ToTable("QA");
 
                     b.HasData(
-                        new { QAId = 1, Answer = "OhmyZsh on Mac side and GitBash on WindowsSide", Notes = "Maize Analytics asked this", Question = "Tell me about what you use in the CommandLine", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" },
-                        new { QAId = 2, Answer = "Confidence Level", Notes = "Kyle from Infoworks - during Mock Interview", Question = "What has been your greatest weakness", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" },
-                        new { QAId = 3, Answer = "Hard Personalities to work with ", Notes = "Claris Health", Question = "What was your biggest challenge at NSS", UserId = "5bd5bec8-7627-4788-b381-fbf9c6ca9f96" }
+                        new { QAId = 1, Answer = "OhmyZsh on Mac side and GitBash on WindowsSide", Notes = "Maize Analytics asked this", Question = "Tell me about what you use in the CommandLine", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
+                        new { QAId = 2, Answer = "Confidence Level", Notes = "Kyle from Infoworks - during Mock Interview", Question = "What has been your greatest weakness", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
+                        new { QAId = 3, Answer = "Hard Personalities to work with ", Notes = "Claris Health", Question = "What was your biggest challenge at NSS", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" }
                     );
                 });
 
@@ -355,6 +361,14 @@ namespace Seekerz.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.HasOne("Seekerz.Models.ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Seekerz.Models.Company", b =>
+                {
+                    b.HasOne("Seekerz.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

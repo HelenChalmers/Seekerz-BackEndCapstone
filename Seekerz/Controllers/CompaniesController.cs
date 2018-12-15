@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,19 +12,33 @@ using Seekerz.Models;
 
 namespace Seekerz.Controllers
 {
+    [Authorize]
     public class CompaniesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CompaniesController(ApplicationDbContext context)
+        //method gets user
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public CompaniesController(ApplicationDbContext ctx,
+                          UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _context = ctx;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Companies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Company.ToListAsync());
+            //getting the user.
+            var user = await GetCurrentUserAsync();
+
+            var usercompanies = _context.Company
+                .Where(c => c.UserId == user.Id)
+                .ToListAsync();
+            return View(await usercompanies);
         }
 
         // GET: Companies/Details/5
@@ -54,10 +70,29 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompanyId,Name,Location,URL")] Company company)
+        public async Task<IActionResult> Create(Company company)
         {
+            //Remove user and userid
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
+
             if (ModelState.IsValid)
             {
+                //Get Current User
+                var user = await GetCurrentUserAsync();
+
+                //Add user to model
+                company.User = user;
+
+                //Add userId to Model
+                company.UserId = user.Id;
+
+                if (company.URL != null && !company.URL.Contains("http://") || !company.URL.Contains("https://"))
+                {
+                    string fixer = "http://";
+                    fixer += company.URL;
+                    company.URL = fixer;
+                }
                 _context.Add(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,15 +121,29 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CompanyId,Name,Location,URL")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("CompanyId,Name,Location,URL,UserId")] Company company)
         {
             if (id != company.CompanyId)
             {
                 return NotFound();
             }
 
+            //Remove user and userid
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
+
             if (ModelState.IsValid)
             {
+
+                //Get Current User
+                var user = await GetCurrentUserAsync();
+
+                //Add user to model
+                company.User = user;
+
+                //Add userId to Model
+                company.UserId = user.Id;
+
                 try
                 {
                     _context.Update(company);

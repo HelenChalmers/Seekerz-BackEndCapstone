@@ -26,7 +26,8 @@
             @Html.DisplayNameFor(model => model.URL)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.URL)
+            
+            <a href="@Html.DisplayFor(model => model.URL)" target="_blank">@Html.DisplayFor(model => model.URL)</a>
         </dd>
     </dl>
 </div>
