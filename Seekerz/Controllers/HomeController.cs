@@ -36,11 +36,12 @@ namespace Seekerz.Controllers
         {
             //getting the user
             var user = await GetCurrentUserAsync();
-
+            
             var userjobs = _context.Job
-                .Where(j => j.UserId == user.Id)
+                .Where(j => j.UserId == user.Id && j.IsActive == true)
                 .ToListAsync();
             //var applicationDbContext = _context.Job.Include(j => j.Company).Include(j => j.User);
+            
             return View(await userjobs);
         }
 
