@@ -109,7 +109,7 @@ namespace Seekerz.Controllers
             //Remove User, UserId and IsActive
             ModelState.Remove("Job.User");
             ModelState.Remove("Job.UserId");
-            //ModelState.Remove("Job.IsActive");
+            
 
             //Get current user
             ApplicationUser user = await GetCurrentUserAsync();
@@ -117,6 +117,7 @@ namespace Seekerz.Controllers
                 //Add user to Model
                 viewModel.Job.User = user;
                 viewModel.Job.UserId = user.Id;
+
                 //Set IsActive
                 viewModel.Job.IsActive = true;
 
@@ -139,12 +140,16 @@ namespace Seekerz.Controllers
                 return NotFound();
             }
 
-            var job = await _context.Job.FindAsync(id);
+            
+
+            var job = await _context.Job.FirstOrDefaultAsync(j => j.JobId == id);
             if (job == null)
             {
                 return NotFound();
             }
+
             ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name", job.CompanyId);
+
             //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", job.UserId);
             return View(job);
         }
@@ -154,12 +159,14 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("JobId,Position,PersonalNotes,ToldNss,IsActive,UserId,CompanyId")] Job job)
+        public async Task<IActionResult> Edit(int id, JobEditViewModel viewModel)
         {
-            if (id != job.JobId)
+
+            if (id != viewModel.Job.JobId)
             {
                 return NotFound();
             }
+
 
             //Remove user and userid
             ModelState.Remove("UserId");
@@ -178,12 +185,12 @@ namespace Seekerz.Controllers
 
                 try
                 {
-                    _context.Update(job);
+                    _context.Update(viewModel.Job);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JobExists(job.JobId))
+                    if (!JobExists(viewModel.Job.JobId))
                     {
                         return NotFound();
                     }
@@ -194,9 +201,11 @@ namespace Seekerz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name", job.CompanyId);
             //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", job.UserId);
             return View(job);
+
         }
 
         // GET: Jobs/Delete/5
