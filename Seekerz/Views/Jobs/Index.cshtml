@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Seekerz.Models.Job>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home Page";
 }
 
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-controller="Jobs" asp-action="Create">Create New Position</a>
 </p>
 <table class="table">
     <thead>
@@ -15,51 +15,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.Position)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PersonalNotes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ToldNss)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company)
-            </th>
-            <th></th>
-        </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PersonalNotes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ToldNss)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company.Location)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.JobId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.JobId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.JobId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            @*<p>@string.Format(pos.Position)</p>*@
+            <tr>
+                <td>
+                    <a asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

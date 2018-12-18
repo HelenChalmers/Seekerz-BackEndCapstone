@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Seekerz.Data;
@@ -16,16 +17,38 @@ namespace Seekerz.Controllers
 
         private readonly ApplicationDbContext _context;
 
-        public HomeController(ApplicationDbContext context)
+        //method gets user
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public HomeController(ApplicationDbContext ctx,
+                          UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _context = ctx;
         }
 
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
+
+        // GET: Jobs
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Job.ToListAsync());
+            //getting the user
+            var user = await GetCurrentUserAsync();
+
+            var userjobs = _context.Job
+                .Where(j => j.UserId == user.Id)
+                .ToListAsync();
+            //var applicationDbContext = _context.Job.Include(j => j.Company).Include(j => j.User);
+            return View(await userjobs);
         }
+
+        //[Authorize]
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Job.ToListAsync());
+        //}
 
 
         public IActionResult About()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -28,10 +29,17 @@ namespace Seekerz.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Jobs
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Job.Include(j => j.Company).Include(j => j.User);
-            return View(await applicationDbContext.ToListAsync());
+            //getting the user
+            var user = await GetCurrentUserAsync();
+
+            var userjobs = _context.Job
+                .Where(j => j.UserId == user.Id)
+                .ToListAsync();
+            //var applicationDbContext = _context.Job.Include(j => j.Company).Include(j => j.User);
+            return View(await userjobs);
         }
 
         // GET: Jobs/Details/5
@@ -139,7 +147,9 @@ namespace Seekerz.Controllers
             {
                 return NotFound();
             }
-            ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Company", job.CompanyId);
+
+            ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name", job.CompanyId);
+
             //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", job.UserId);
             return View(job);
         }
@@ -157,23 +167,22 @@ namespace Seekerz.Controllers
                 return NotFound();
             }
 
-            //Remove User, UserId and IsActive
-            ModelState.Remove("Job.User");
-            ModelState.Remove("Job.UserId");
 
-
-            //Get current user
-            ApplicationUser user = await GetCurrentUserAsync();
-
-            //Add user to Model
-            viewModel.Job.User = user;
-            viewModel.Job.UserId = user.Id;
-
-
-            
+            //Remove user and userid
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
 
             if (ModelState.IsValid)
             {
+                //Get Current User
+                var user = await GetCurrentUserAsync();
+
+                //Add user to model
+                job.User = user;
+
+                //Add userId to Model
+                job.UserId = user.Id;
+
                 try
                 {
                     _context.Update(viewModel.Job);
@@ -192,9 +201,11 @@ namespace Seekerz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Location", job.CompanyId);
+
+            ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name", job.CompanyId);
             //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", job.UserId);
-            return View(viewModel);
+            return View(job);
+
         }
 
         // GET: Jobs/Delete/5
