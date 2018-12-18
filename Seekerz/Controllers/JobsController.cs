@@ -159,10 +159,10 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, JobEditViewModel viewModel)
+        public async Task<IActionResult> Edit(int id, Job job)
         {
 
-            if (id != viewModel.Job.JobId)
+            if (id != job.JobId)
             {
                 return NotFound();
             }
@@ -185,12 +185,12 @@ namespace Seekerz.Controllers
 
                 try
                 {
-                    _context.Update(viewModel.Job);
+                    _context.Update(job);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JobExists(viewModel.Job.JobId))
+                    if (!JobExists(job.JobId))
                     {
                         return NotFound();
                     }
