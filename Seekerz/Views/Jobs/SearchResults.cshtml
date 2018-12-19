@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Seekerz.Models.Job>
+
+@{
+    ViewData["Title"] = "SearchResults";
+}
+
+<h2>SearchResults</h2>
+@*
+    
+    View: this is a view fo rthe list of products that comes up when the search bar is entered.
+*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

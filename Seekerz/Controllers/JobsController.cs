@@ -258,5 +258,12 @@ namespace Seekerz.Controllers
         {
             return _context.Job.Any(e => e.JobId == id);
         }
+
+        //Search Bar Function
+        [Authorize]
+        public ActionResult SearchResults(string search)
+        {
+            return View(_context.Job.Where(x => x.Position.Contains(search) || search == null || x.Company.Name.Contains(search)).ToList());
+        }
     }
 }
