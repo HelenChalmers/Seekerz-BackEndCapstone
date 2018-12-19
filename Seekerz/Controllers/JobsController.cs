@@ -261,9 +261,16 @@ namespace Seekerz.Controllers
 
         //Search Bar Function
         [Authorize]
-        public ActionResult SearchResults(string search)
+        public async Task<IActionResult> SearchResults(string search)
         {
-            return View(_context.Job.Where(x => x.Position.Contains(search) || search == null || x.Company.Name.Contains(search)).ToList());
+            var user = await GetCurrentUserAsync();
+
+            var searchBar = _context.Job
+             .Where(y => y.UserId == user.Id)
+             .Where(x => x.Position.Contains(search) ||
+             search == null ||
+             x.Company.Name.Contains(search)).ToList();
+            return View(searchBar);
         }
     }
 }
