@@ -23,7 +23,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Position)
+                    <a asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a>
                 </td>
             </tr>
         }
