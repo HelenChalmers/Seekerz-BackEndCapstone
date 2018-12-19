@@ -28,7 +28,7 @@ namespace Seekerz.Controllers
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
-        // GET: Jobs
+        // GET: Active Jobs
         [Authorize]
         public async Task<IActionResult> Index()
         {
@@ -36,9 +36,10 @@ namespace Seekerz.Controllers
             var user = await GetCurrentUserAsync();
 
             var userjobs = _context.Job
-                .Where(j => j.UserId == user.Id)
+                .Where(j => j.UserId == user.Id && j.IsActive == true)
                 .ToListAsync();
             //var applicationDbContext = _context.Job.Include(j => j.Company).Include(j => j.User);
+
             return View(await userjobs);
         }
         //Getting Archived Jobs
