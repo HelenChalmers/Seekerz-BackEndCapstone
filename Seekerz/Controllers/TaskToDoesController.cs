@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,17 @@ namespace Seekerz.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public TaskToDoesController(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public TaskToDoesController(ApplicationDbContext ctx,
+                          UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _context = ctx;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
 
         // GET: TaskToDoes
         public async Task<IActionResult> Index()
@@ -46,9 +54,13 @@ namespace Seekerz.Controllers
         }
 
         // GET: TaskToDoes/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int id)
         {
-            ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position");
+            Job job = await _context.Job
+                .FirstOrDefaultAsync(j => j.JobId == id);
+
+
+            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View();
         }
 
@@ -59,11 +71,14 @@ namespace Seekerz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TaskToDoId,NewTask,CompleteDate,IsCompleted,JobId")] TaskToDo taskToDo)
         {
+            
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(taskToDo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Jobs");
             }
             ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
             return View(taskToDo);

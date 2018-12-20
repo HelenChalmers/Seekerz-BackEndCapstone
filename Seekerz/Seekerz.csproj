@@ -13,5 +13,8 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.1.0-preview1-final" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\TaskToDoViewModels\" />
+  </ItemGroup>
 
 </Project>
