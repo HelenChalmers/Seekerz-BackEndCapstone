@@ -70,19 +70,27 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(JobDetailViewModel viewmodel, int id)
+        public async Task<IActionResult> Create(TaskToDo model, int id)
         {
             
 
 
             if (ModelState.IsValid)
             {
-                _context.Add(viewmodel.TaskToDo);
+                //this builds up the object of the tasks
+                TaskToDo taskToDo = new TaskToDo()
+                {
+                    NewTask = model.NewTask,
+                    CompleteDate = model.CompleteDate,
+                    IsCompleted = false,
+                    JobId = id
+                };
+                _context.Add(taskToDo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             //ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
-            return View(viewmodel);
+            return View(model);
         }
 
         // GET: TaskToDoes/Edit/5

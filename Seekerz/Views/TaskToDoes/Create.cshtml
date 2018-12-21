@@ -22,13 +22,13 @@
                 <input asp-for="CompleteDate" class="form-control" />
                 <span asp-validation-for="CompleteDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
                     </label>
                 </div>
-            </div>
+            </div>*@
             @*<div class="form-group">
                 <label asp-for="JobId" class="control-label"></label>
                 <select asp-for="JobId" class ="form-control" asp-items="ViewBag.JobId"></select>
