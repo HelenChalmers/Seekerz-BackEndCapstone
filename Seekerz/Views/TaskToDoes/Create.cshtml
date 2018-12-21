@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create A Task</h2>
 
-<h4>TaskToDo</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,17 +22,17 @@
                 <input asp-for="CompleteDate" class="form-control" />
                 <span asp-validation-for="CompleteDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
                     </label>
                 </div>
-            </div>
-            <div class="form-group">
+            </div>*@
+            @*<div class="form-group">
                 <label asp-for="JobId" class="control-label"></label>
                 <select asp-for="JobId" class ="form-control" asp-items="ViewBag.JobId"></select>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

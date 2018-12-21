@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Seekerz.Data;
 using Seekerz.Models;
+using Seekerz.Models.JobViewModels;
 
 namespace Seekerz.Controllers
 {
@@ -14,10 +16,17 @@ namespace Seekerz.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public TaskToDoesController(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public TaskToDoesController(ApplicationDbContext ctx,
+                          UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _context = ctx;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
 
         // GET: TaskToDoes
         public async Task<IActionResult> Index()
@@ -45,10 +54,14 @@ namespace Seekerz.Controllers
             return View(taskToDo);
         }
 
-        // GET: TaskToDoes/Create
-        public IActionResult Create()
+        // GET: TaskToDoes/Create - passing in the ID of the job so that when the task is created, the JobId is associated with the task 
+        public async Task<IActionResult> Create(int id)
         {
-            ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position");
+            Job job = await _context.Job
+                .FirstOrDefaultAsync(j => j.JobId == id);
+
+
+            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View();
         }
 
@@ -57,16 +70,27 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TaskToDoId,NewTask,CompleteDate,IsCompleted,JobId")] TaskToDo taskToDo)
+        public async Task<IActionResult> Create(TaskToDo model, int id)
         {
+            
+
+
             if (ModelState.IsValid)
             {
+                //this builds up the object of the tasks
+                TaskToDo taskToDo = new TaskToDo()
+                {
+                    NewTask = model.NewTask,
+                    CompleteDate = model.CompleteDate,
+                    IsCompleted = false,
+                    JobId = id
+                };
                 _context.Add(taskToDo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
-            return View(taskToDo);
+            //ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
+            return View(model);
         }
 
         // GET: TaskToDoes/Edit/5
