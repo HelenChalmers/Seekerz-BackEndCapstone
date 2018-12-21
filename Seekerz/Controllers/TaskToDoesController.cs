@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Seekerz.Data;
 using Seekerz.Models;
+using Seekerz.Models.JobViewModels;
 
 namespace Seekerz.Controllers
 {
@@ -53,7 +54,7 @@ namespace Seekerz.Controllers
             return View(taskToDo);
         }
 
-        // GET: TaskToDoes/Create
+        // GET: TaskToDoes/Create - passing in the ID of the job so that when the task is created, the JobId is associated with the task 
         public async Task<IActionResult> Create(int id)
         {
             Job job = await _context.Job
@@ -69,19 +70,19 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TaskToDoId,NewTask,CompleteDate,IsCompleted,JobId")] TaskToDo taskToDo)
+        public async Task<IActionResult> Create(JobDetailViewModel viewmodel, int id)
         {
             
 
 
             if (ModelState.IsValid)
             {
-                _context.Add(taskToDo);
+                _context.Add(viewmodel.TaskToDo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Jobs");
+                return RedirectToAction(nameof(Index));
             }
-            ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
-            return View(taskToDo);
+            //ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
+            return View(viewmodel);
         }
 
         // GET: TaskToDoes/Edit/5
