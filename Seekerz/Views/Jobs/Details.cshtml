@@ -1,4 +1,4 @@
-﻿@model Seekerz.Models.Job
+﻿@model Seekerz.Models.JobViewModels.JobDetailViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -11,45 +11,48 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Position)
+           Position
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Position)
+            @Model.Job.Position
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.PersonalNotes)
+            Notes
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.PersonalNotes)
+            @Model.Job.PersonalNotes
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ToldNss)
+            Have You Talked to NSS about this position?
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ToldNss)
+            @Model.Job.ToldNss)
         </dd>
-        @*<dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>*@
+        
         <dt>
-            @Html.DisplayNameFor(model => model.User)
+            Company
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.User.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Company)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Company.Name)
+            @Model.Job.Company.Name)
         </dd>
     </dl>
 </div>
+
+<h2>Tasks</h2>
+
+@foreach(var task in @Model.TaskToDos)
+{
+    <h3>Task</h3>
+    <p> @task.NewTask</p>
+
+    <h3>Date</h3>
+
+    <p> @task.CompleteDate</p>
+    
+}
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.JobId">Edit</a> |
-    <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.JobId">Add a Task</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Job.JobId">Edit</a> |
+    <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.Job.JobId">Add a Task</a> |
     <a asp-action="Index">Back to List</a>
 </div>

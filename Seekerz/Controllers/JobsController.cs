@@ -65,16 +65,29 @@ namespace Seekerz.Controllers
                 return NotFound();
             }
 
+            
             var job = await _context.Job
                 .Include(j => j.Company)
                 .Include(j => j.User)
                 .FirstOrDefaultAsync(m => m.JobId == id);
+
+            var task = await _context.TaskToDo
+                .Include(t => t.NewTask)
+                .Include(t => t.CompleteDate)
+                .FirstOrDefaultAsync(t => t.JobId == id);
+
+
+            JobDetailViewModel viewModel = new JobDetailViewModel
+            {
+                Job = job,
+                TaskToDos = task
+            };
             if (job == null)
             {
                 return NotFound();
             }
 
-            return View(job);
+            return View(viewModel);
         }
 
         // GET: Jobs/Create
