@@ -1,4 +1,4 @@
-﻿@model Seekerz.Models.JobViewModels.JobDetailViewModel
+﻿@model Seekerz.Models.Job
 
 @{
     ViewData["Title"] = "Details";
@@ -11,48 +11,112 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-           Position
+            Position
         </dt>
         <dd>
-            @Model.Job.Position
+            @Html.DisplayFor(model => model.Position)
+
         </dd>
         <dt>
             Notes
         </dt>
         <dd>
-            @Model.Job.PersonalNotes
+            @Html.DisplayFor(model => model.PersonalNotes)
         </dd>
         <dt>
             Have You Talked to NSS about this position?
         </dt>
         <dd>
-            @Model.Job.ToldNss)
+            @Html.DisplayFor(model => model.ToldNss)
         </dd>
-        
+
         <dt>
             Company
         </dt>
         <dd>
-            @Model.Job.Company.Name)
+            @Html.DisplayFor(model => model.Company.Name)
         </dd>
     </dl>
 </div>
 
 <h2>Tasks</h2>
 
-@foreach(var task in @Model.TaskToDos)
+@foreach (var task in Model.UserTasks)
 {
     <h3>Task</h3>
-    <p> @task.NewTask</p>
+    if (task.IsCompleted == false)
+    {
+        <li>@string.Format(task.NewTask)<b>   GoalDate: </b>@(task.CompleteDate)</li>
+    }
 
-    <h3>Date</h3>
-
-    <p> @task.CompleteDate</p>
-    
+    <h3>Completed Tasks</h3>
+    if (task.IsCompleted == true)
+    {
+        <li>@string.Format(task.NewTask)<b>   GoalDate: </b>@(task.CompleteDate)</li>
+    }
 }
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Job.JobId">Edit</a> |
-    <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.Job.JobId">Add a Task</a> |
+    <a asp-action="Edit" asp-route-id="@Model.JobId">Edit</a> |
+    <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.JobId">Add a Task</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+@*@model Seekerz.Models.JobViewModels.JobDetailViewModel
+
+    @{
+        ViewData["Title"] = "Details";
+    }
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>Job</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Position
+            </dt>
+            <dd>
+                @Model.Job.Position
+            </dd>
+            <dt>
+                Notes
+            </dt>
+            <dd>
+                @Model.Job.PersonalNotes
+            </dd>
+            <dt>
+                Have You Talked to NSS about this position?
+            </dt>
+            <dd>
+                @Model.Job.ToldNss)
+            </dd>
+
+            <dt>
+                Company
+            </dt>
+            <dd>
+                @Model.Job.Company.Name)
+            </dd>
+        </dl>
+    </div>
+
+    <h2>Tasks</h2>
+
+    @foreach (var task in @Model.TaskToDos)
+    {
+        <h3>Task</h3>
+        <p> @task.NewTask</p>
+
+        <h3>Date</h3>
+
+        <p> @task.CompleteDate</p>
+
+    }
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Job.JobId">Edit</a> |
+        <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.Job.JobId">Add a Task</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@

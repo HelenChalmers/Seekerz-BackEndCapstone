@@ -66,28 +66,43 @@ namespace Seekerz.Controllers
             }
 
             
-            var job = await _context.Job
-                .Include(j => j.Company)
+            var jobtask = await _context.Job       
+                .Include(j => j.Position)
+                .Include(j => j.PersonalNotes)
+                .Include(j => j.ToldNss)
                 .Include(j => j.User)
-                .FirstOrDefaultAsync(m => m.JobId == id);
+                .Include(j => j.Company)
+                .ThenInclude(c => c.Name)
+                .Include(j => j.UserTasks)
+                .ThenInclude(ut => ut.NewTask)
+                .Include(j => j.UserTasks)
+                .ThenInclude(ut => ut.CompleteDate)
+                .Include(j => j.UserTasks)
+                .ThenInclude(ut => ut.IsCompleted)
+                .FirstOrDefaultAsync(j => j.JobId == id);
 
-            var task = await _context.TaskToDo
-                .Include(t => t.NewTask)
-                .Include(t => t.CompleteDate)
-                .FirstOrDefaultAsync(t => t.JobId == id);
+            //List<TaskToDo> tasks = await _context.TaskToDo.Where(t => t.JobId == id).Include(t => t.NewTask).Include(t => t.CompleteDate).ToListAsync();
+            ////.Include(t => t.NewTask)
+            //.Include(t => t.CompleteDate)
+
+            //List<TaskToDo> tasksToDo = new List<TaskToDo>();
+
+            
 
 
-            JobDetailViewModel viewModel = new JobDetailViewModel
-            {
-                Job = job,
-                TaskToDos = task
-            };
-            if (job == null)
+
+            //JobDetailViewModel viewModel = new JobDetailViewModel
+            //{
+            //    Job = job,
+            //    TaskToDos = tasks
+            //};
+
+            if (jobtask == null)
             {
                 return NotFound();
             }
 
-            return View(viewModel);
+            return View(jobtask);
         }
 
         // GET: Jobs/Create
