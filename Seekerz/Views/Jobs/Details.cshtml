@@ -61,8 +61,21 @@
             </ul>
         </dd>
 
-        <dt>Finished Tasks</dt> <br /><br />
-    </dl>
+        <dt>Finished Tasks</dt>
+        <dd>
+            <ul>
+                @foreach (var task in Model.UserTasks)
+                {
+                    if (task.IsCompleted == true)
+                    {
+                        <li>@string.Format(task.NewTask)</li>
+                    }
+                }
+            </ul>
+        </dd>
+            <br />
+            <br />
+</dl>
 </div>
 
 <div>
