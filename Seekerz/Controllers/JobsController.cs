@@ -67,6 +67,7 @@ namespace Seekerz.Controllers
 
             var job = await _context.Job
                 .Include(j => j.Company)
+                .Include(j => j.UserTasks)
                 .Include(j => j.User)
                 .FirstOrDefaultAsync(m => m.JobId == id);
             if (job == null)
