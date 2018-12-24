@@ -140,7 +140,7 @@ namespace Seekerz.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { id = taskToDo.TaskToDoId });
             }
             ViewData["JobId"] = new SelectList(_context.Job, "JobId", "Position", taskToDo.JobId);
             return View(taskToDo);
