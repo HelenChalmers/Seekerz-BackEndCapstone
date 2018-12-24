@@ -171,9 +171,10 @@ namespace Seekerz.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var taskToDo = await _context.TaskToDo.FindAsync(id);
+            var tasksJob = taskToDo.JobId;
             _context.TaskToDo.Remove(taskToDo);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Redirect("Jobs/Details/{tasksJob}");
         }
 
         private bool TaskToDoExists(int id)
