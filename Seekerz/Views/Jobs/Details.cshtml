@@ -54,7 +54,7 @@
                 {
                     if (task.IsCompleted == false)
                     {
-                        <li>@string.Format(task.NewTask)</li>
+                        <li><a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a></li>
                     }
                 }
 
@@ -63,16 +63,16 @@
 
         <dt>Finished Tasks</dt>
         <dd>
-            <ul>
-                @foreach (var task in Model.UserTasks)
+        <ul>
+            @foreach (var task in Model.UserTasks)
+            {
+                if (task.IsCompleted == true)
                 {
-                    if (task.IsCompleted == true)
-                    {
-                        <li>@string.Format(task.NewTask)</li>
-                    }
+            <li><a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a></li>
                 }
+            }
             </ul>
-        </dd>
+            </dd>
             <br />
             <br />
 </dl>

@@ -19,7 +19,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            @*<p>@string.Format(pos.Position)</p>*@
+            
             <tr>
                 <td>
                     <a asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a>
