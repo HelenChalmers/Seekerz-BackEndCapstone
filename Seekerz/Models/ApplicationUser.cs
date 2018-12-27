@@ -25,6 +25,8 @@ namespace Seekerz.Models
 
         public virtual ICollection<QA> QAs { get; set; }
 
+        public virtual ICollection<Company> Companies { get; set; }
 
+        public virtual ICollection<TaskToDo> TasksToDo { get; set; }
     }
 }
