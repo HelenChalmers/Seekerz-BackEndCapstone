@@ -63,7 +63,7 @@ namespace Seekerz.Data
                 FirstName = "Helen",
                 LastName = "Chalmers",
                 UserName = "Helen",
-                NormalizedUserName = "HChALMERS23@GMAIL.COM",
+                NormalizedUserName = "HCHALMERS23@GMAIL.COM",
                 Email = "hchalmers23@gmail.com",
                 NormalizedEmail = "HCHALMERS23@GMAIL.COM",
                 EmailConfirmed = true,
@@ -99,13 +99,21 @@ namespace Seekerz.Data
                    Name = "Info Works",
                    Location = "Nashville, TN",
                    URL = "https://www.infoworks.io/",
-                   UserId = Helen.Id
+                   UserId = user.Id
                },
                new Company()
                {
                    CompanyId = 4,
                    Name = "Ramsey Solutions",
                    Location = "Franklin, TN",
+                   URL = "",
+                   UserId = user.Id
+               },
+               new Company()
+               {
+                   CompanyId = 5,
+                   Name = "The Atkinsons",
+                   Location = "BelleMeade, Nashville, TN",
                    URL = "",
                    UserId = user.Id
                }
@@ -152,6 +160,16 @@ namespace Seekerz.Data
                     IsActive = false,
                     UserId = Helen.Id,
                     CompanyId = 1
+                },
+                new Job()
+                {
+                    JobId = 5,
+                    Position = "DogWalker",
+                    PersonalNotes = "Side Gig",
+                    ToldNss = "They don't",
+                    IsActive = true,
+                    UserId = user.Id,
+                    CompanyId = 1
                 }
             );
             modelBuilder.Entity<TaskToDo>().HasData(
@@ -161,7 +179,8 @@ namespace Seekerz.Data
                    NewTask = "Study-Technical Interview",
                    CompleteDate = new DateTime(2018, 12, 18, 13, 30, 00),
                    IsCompleted = false,
-                   JobId = 3
+                   JobId = 3,
+                   UserId = Helen.Id
                },
                new TaskToDo()
                {
@@ -169,7 +188,8 @@ namespace Seekerz.Data
                    NewTask = "Follow up with Claris Health",
                    CompleteDate = new DateTime(2018, 12, 17, 12, 30, 00),
                    IsCompleted = false,
-                   JobId = 1
+                   JobId = 1,
+                   UserId = Helen.Id
                },
                new TaskToDo()
                {
@@ -177,7 +197,17 @@ namespace Seekerz.Data
                    NewTask = "Follow up with Infoworks",
                    CompleteDate = new DateTime(2018, 12, 17, 12, 30, 00),
                    IsCompleted = false,
-                   JobId = 3
+                   JobId = 3,
+                   UserId = Helen.Id
+               },
+               new TaskToDo()
+               {
+                   TaskToDoId = 4,
+                   NewTask = "Take Pup for walk",
+                   CompleteDate = new DateTime(2018, 12, 17, 12, 30, 00),
+                   IsCompleted = false,
+                   JobId = 5,
+                   UserId = user.Id
                }
                );
 

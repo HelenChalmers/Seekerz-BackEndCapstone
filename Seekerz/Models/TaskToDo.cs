@@ -22,5 +22,10 @@ namespace Seekerz.Models
         public int JobId { get; set; }
 
         public Job Jobs { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
+
+        public ApplicationUser User { get; set; }
     }
 }

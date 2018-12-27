@@ -15,7 +15,7 @@ namespace Seekerz.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -190,8 +190,8 @@ namespace Seekerz.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "8c41e75d-0923-4cb0-8e10-3d7973b9a8cd", AccessFailedCount = 0, ConcurrencyStamp = "1a548e30-0043-4adc-8aad-746efbc8084f", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "Admina", LastName = "Straytor", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAEK7pLkhAyQQ6xyBCQAKyYZlJ80NkSvT5aVESrWOiCLxkjpU/Bn+BXtR9+o4BM8o8uA==", PhoneNumberConfirmed = false, SecurityStamp = "15a08eab-6d80-4740-8c9a-4cef7e7603fd", TwoFactorEnabled = false, UserName = "Admina" },
-                        new { Id = "866658cd-4f6a-4a4d-bca6-4b6327b98d42", AccessFailedCount = 0, ConcurrencyStamp = "5aa57422-7f65-4ec7-9397-7c3eda74007f", Email = "hchalmers23@gmail.com", EmailConfirmed = true, FirstName = "Helen", LastName = "Chalmers", LockoutEnabled = false, NormalizedEmail = "HCHALMERS23@GMAIL.COM", NormalizedUserName = "HChALMERS23@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEIH5TRyt2fhpCY+oGg9AjVwPBVp0nvW41o0c0Gjbd8ZKjbUA3bhgAh5HxHjgnQ1Zdw==", PhoneNumberConfirmed = false, SecurityStamp = "d6ee4850-ddc4-4ab6-b507-49ad70be02ab", TwoFactorEnabled = false, UserName = "Helen" }
+                        new { Id = "d83b833c-27bf-4118-aed9-0d993bd9b7b3", AccessFailedCount = 0, ConcurrencyStamp = "b878abee-f449-4ae9-bb5c-e85533abccf0", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "Admina", LastName = "Straytor", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAEOJ9w2MbqCz0hQUDGzJZWUaiZqUdaLaTOhb+rq9raGsYb/jAAxk9yF1bpio9HEmnSg==", PhoneNumberConfirmed = false, SecurityStamp = "8d01b696-f106-4730-873e-3ae04824cf9b", TwoFactorEnabled = false, UserName = "Admina" },
+                        new { Id = "df7399e2-00ed-4abc-bf6c-583a79cb953a", AccessFailedCount = 0, ConcurrencyStamp = "54f32b8f-7f13-4aad-a012-91acb5a11d30", Email = "hchalmers23@gmail.com", EmailConfirmed = true, FirstName = "Helen", LastName = "Chalmers", LockoutEnabled = false, NormalizedEmail = "HCHALMERS23@GMAIL.COM", NormalizedUserName = "HCHALMERS23@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEDHe732ARKtMpEdkz5taNpGJCcg4FAY2H2xtD5HDaQQIJjqZQPJSSg5l2e9TkGqbag==", PhoneNumberConfirmed = false, SecurityStamp = "7c731bf8-52d3-4b24-bb62-a11881a659c3", TwoFactorEnabled = false, UserName = "Helen" }
                     );
                 });
 
@@ -219,10 +219,11 @@ namespace Seekerz.Migrations
                     b.ToTable("Company");
 
                     b.HasData(
-                        new { CompanyId = 1, Location = "West End, Nashville", Name = "Maize Analytics", URL = "https://www.maizeanalytics.com/", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                        new { CompanyId = 2, Location = "Nashville, TN", Name = "Claris Health", URL = "https://www.clarishealth.com/", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                        new { CompanyId = 3, Location = "Nashville, TN", Name = "Info Works", URL = "https://www.infoworks.io/", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                        new { CompanyId = 4, Location = "Franklin, TN", Name = "Ramsey Solutions", URL = "", UserId = "8c41e75d-0923-4cb0-8e10-3d7973b9a8cd" }
+                        new { CompanyId = 1, Location = "West End, Nashville", Name = "Maize Analytics", URL = "https://www.maizeanalytics.com/", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { CompanyId = 2, Location = "Nashville, TN", Name = "Claris Health", URL = "https://www.clarishealth.com/", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { CompanyId = 3, Location = "Nashville, TN", Name = "Info Works", URL = "https://www.infoworks.io/", UserId = "d83b833c-27bf-4118-aed9-0d993bd9b7b3" },
+                        new { CompanyId = 4, Location = "Franklin, TN", Name = "Ramsey Solutions", URL = "", UserId = "d83b833c-27bf-4118-aed9-0d993bd9b7b3" },
+                        new { CompanyId = 5, Location = "BelleMeade, Nashville, TN", Name = "The Atkinsons", URL = "", UserId = "d83b833c-27bf-4118-aed9-0d993bd9b7b3" }
                     );
                 });
 
@@ -255,10 +256,11 @@ namespace Seekerz.Migrations
                     b.ToTable("Job");
 
                     b.HasData(
-                        new { JobId = 1, CompanyId = 2, IsActive = true, PersonalNotes = "Liked the Company and is growing dramatically over the next year.", Position = "Software Developer 1", ToldNss = "Nss KNows - employer came in to NSS to interview", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                        new { JobId = 2, CompanyId = 3, IsActive = true, PersonalNotes = "Had a mock interview that could turn into a real one.", Position = "Software Developer", ToldNss = "Kristin knows about the mock interview might turn into a real one", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                        new { JobId = 3, CompanyId = 1, IsActive = true, PersonalNotes = "Interviewed with Chase Ramsey - have a 2nd interview scheduled", Position = "Technical Operations", ToldNss = "knows that I have a technical interview scheduled", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                        new { JobId = 4, CompanyId = 1, IsActive = false, PersonalNotes = "Over It", Position = "Executive Assistant", ToldNss = "They don't", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" }
+                        new { JobId = 1, CompanyId = 2, IsActive = true, PersonalNotes = "Liked the Company and is growing dramatically over the next year.", Position = "Software Developer 1", ToldNss = "Nss KNows - employer came in to NSS to interview", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { JobId = 2, CompanyId = 3, IsActive = true, PersonalNotes = "Had a mock interview that could turn into a real one.", Position = "Software Developer", ToldNss = "Kristin knows about the mock interview might turn into a real one", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { JobId = 3, CompanyId = 1, IsActive = true, PersonalNotes = "Interviewed with Chase Ramsey - have a 2nd interview scheduled", Position = "Technical Operations", ToldNss = "knows that I have a technical interview scheduled", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { JobId = 4, CompanyId = 1, IsActive = false, PersonalNotes = "Over It", Position = "Executive Assistant", ToldNss = "They don't", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { JobId = 5, CompanyId = 1, IsActive = true, PersonalNotes = "Side Gig", Position = "DogWalker", ToldNss = "They don't", UserId = "d83b833c-27bf-4118-aed9-0d993bd9b7b3" }
                     );
                 });
 
@@ -285,9 +287,9 @@ namespace Seekerz.Migrations
                     b.ToTable("QA");
 
                     b.HasData(
-                        new { QAId = 1, Answer = "OhmyZsh on Mac side and GitBash on WindowsSide", Notes = "Maize Analytics asked this", Question = "Tell me about what you use in the CommandLine", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                        new { QAId = 2, Answer = "Confidence Level", Notes = "Kyle from Infoworks - during Mock Interview", Question = "What has been your greatest weakness", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                        new { QAId = 3, Answer = "Hard Personalities to work with ", Notes = "Claris Health", Question = "What was your biggest challenge at NSS", UserId = "866658cd-4f6a-4a4d-bca6-4b6327b98d42" }
+                        new { QAId = 1, Answer = "OhmyZsh on Mac side and GitBash on WindowsSide", Notes = "Maize Analytics asked this", Question = "Tell me about what you use in the CommandLine", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { QAId = 2, Answer = "Confidence Level", Notes = "Kyle from Infoworks - during Mock Interview", Question = "What has been your greatest weakness", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { QAId = 3, Answer = "Hard Personalities to work with ", Notes = "Claris Health", Question = "What was your biggest challenge at NSS", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" }
                     );
                 });
 
@@ -306,16 +308,22 @@ namespace Seekerz.Migrations
                     b.Property<string>("NewTask")
                         .IsRequired();
 
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
                     b.HasKey("TaskToDoId");
 
                     b.HasIndex("JobId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("TaskToDo");
 
                     b.HasData(
-                        new { TaskToDoId = 1, CompleteDate = new DateTime(2018, 12, 18, 13, 30, 0, 0, DateTimeKind.Unspecified), IsCompleted = false, JobId = 3, NewTask = "Study-Technical Interview" },
-                        new { TaskToDoId = 2, CompleteDate = new DateTime(2018, 12, 17, 12, 30, 0, 0, DateTimeKind.Unspecified), IsCompleted = false, JobId = 1, NewTask = "Follow up with Claris Health" },
-                        new { TaskToDoId = 3, CompleteDate = new DateTime(2018, 12, 17, 12, 30, 0, 0, DateTimeKind.Unspecified), IsCompleted = false, JobId = 3, NewTask = "Follow up with Infoworks" }
+                        new { TaskToDoId = 1, CompleteDate = new DateTime(2018, 12, 18, 13, 30, 0, 0, DateTimeKind.Unspecified), IsCompleted = false, JobId = 3, NewTask = "Study-Technical Interview", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { TaskToDoId = 2, CompleteDate = new DateTime(2018, 12, 17, 12, 30, 0, 0, DateTimeKind.Unspecified), IsCompleted = false, JobId = 1, NewTask = "Follow up with Claris Health", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { TaskToDoId = 3, CompleteDate = new DateTime(2018, 12, 17, 12, 30, 0, 0, DateTimeKind.Unspecified), IsCompleted = false, JobId = 3, NewTask = "Follow up with Infoworks", UserId = "df7399e2-00ed-4abc-bf6c-583a79cb953a" },
+                        new { TaskToDoId = 4, CompleteDate = new DateTime(2018, 12, 17, 12, 30, 0, 0, DateTimeKind.Unspecified), IsCompleted = false, JobId = 5, NewTask = "Take Pup for walk", UserId = "d83b833c-27bf-4118-aed9-0d993bd9b7b3" }
                     );
                 });
 
@@ -367,7 +375,7 @@ namespace Seekerz.Migrations
             modelBuilder.Entity("Seekerz.Models.Company", b =>
                 {
                     b.HasOne("Seekerz.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Companies")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -399,6 +407,11 @@ namespace Seekerz.Migrations
                         .WithMany("UserTasks")
                         .HasForeignKey("JobId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Seekerz.Models.ApplicationUser", "User")
+                        .WithMany("TasksToDo")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
