@@ -22,5 +22,7 @@ namespace Seekerz.Models
         public int JobId { get; set; }
 
         public Job Jobs { get; set; }
+
+        
     }
 }

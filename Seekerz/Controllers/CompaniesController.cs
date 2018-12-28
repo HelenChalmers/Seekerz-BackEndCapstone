@@ -86,6 +86,12 @@ namespace Seekerz.Controllers
 
                 //Add userId to Model
                 company.UserId = user.Id;
+                //if (company.URL = "")
+                //{
+                //    string 
+                //}
+
+                
 
                 if(string.IsNullOrEmpty(company.URL))
                 {

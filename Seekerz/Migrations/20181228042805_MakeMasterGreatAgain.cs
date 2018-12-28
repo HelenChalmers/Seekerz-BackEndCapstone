@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Seekerz.Migrations
 {
-    public partial class Userid : Migration
+    public partial class MakeMasterGreatAgain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -254,22 +254,22 @@ namespace Seekerz.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "8c41e75d-0923-4cb0-8e10-3d7973b9a8cd", 0, "1a548e30-0043-4adc-8aad-746efbc8084f", "admin@admin.com", true, "Admina", "Straytor", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEK7pLkhAyQQ6xyBCQAKyYZlJ80NkSvT5aVESrWOiCLxkjpU/Bn+BXtR9+o4BM8o8uA==", null, false, "15a08eab-6d80-4740-8c9a-4cef7e7603fd", false, "Admina" });
+                values: new object[] { "547bed1b-1d80-418e-b1dc-f72f52304903", 0, "3b58f0e1-2c44-4465-8e9e-698a42dc974d", "admin@admin.com", true, "Admina", "Straytor", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAECXzjgbJnbYZtKZzVvJYmZR6dRkLfAsqMR8Y8IpcaOMYVibg9nBIzhcxY+xUHXt5Yw==", null, false, "d9e1bebe-22b9-4f97-8f82-b0ecae0f0a1c", false, "Admina" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "866658cd-4f6a-4a4d-bca6-4b6327b98d42", 0, "5aa57422-7f65-4ec7-9397-7c3eda74007f", "hchalmers23@gmail.com", true, "Helen", "Chalmers", false, null, "HCHALMERS23@GMAIL.COM", "HChALMERS23@GMAIL.COM", "AQAAAAEAACcQAAAAEIH5TRyt2fhpCY+oGg9AjVwPBVp0nvW41o0c0Gjbd8ZKjbUA3bhgAh5HxHjgnQ1Zdw==", null, false, "d6ee4850-ddc4-4ab6-b507-49ad70be02ab", false, "Helen" });
+                values: new object[] { "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf", 0, "78814818-d7e4-40a3-83f4-71993c8440fd", "hchalmers23@gmail.com", true, "Helen", "Chalmers", false, null, "HCHALMERS23@GMAIL.COM", "HChALMERS23@GMAIL.COM", "AQAAAAEAACcQAAAAEA3Tak24Eg8SVvo3rQ0uTGXVnGqxIQ42/Ye/dgBIbpthvEvm94RCFA63amHzFLTt2w==", null, false, "0538f982-5214-4cf0-b7bf-5eb24eadc7a9", false, "Helen" });
 
             migrationBuilder.InsertData(
                 table: "Company",
                 columns: new[] { "CompanyId", "Location", "Name", "URL", "UserId" },
                 values: new object[,]
                 {
-                    { 4, "Franklin, TN", "Ramsey Solutions", "", "8c41e75d-0923-4cb0-8e10-3d7973b9a8cd" },
-                    { 1, "West End, Nashville", "Maize Analytics", "https://www.maizeanalytics.com/", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                    { 2, "Nashville, TN", "Claris Health", "https://www.clarishealth.com/", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                    { 3, "Nashville, TN", "Info Works", "https://www.infoworks.io/", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" }
+                    { 4, "Franklin, TN", "Ramsey Solutions", "", "547bed1b-1d80-418e-b1dc-f72f52304903" },
+                    { 1, "West End, Nashville", "Maize Analytics", "https://www.maizeanalytics.com/", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" },
+                    { 2, "Nashville, TN", "Claris Health", "https://www.clarishealth.com/", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" },
+                    { 3, "Nashville, TN", "Info Works", "https://www.infoworks.io/", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" }
                 });
 
             migrationBuilder.InsertData(
@@ -277,9 +277,9 @@ namespace Seekerz.Migrations
                 columns: new[] { "QAId", "Answer", "Notes", "Question", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "OhmyZsh on Mac side and GitBash on WindowsSide", "Maize Analytics asked this", "Tell me about what you use in the CommandLine", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                    { 2, "Confidence Level", "Kyle from Infoworks - during Mock Interview", "What has been your greatest weakness", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                    { 3, "Hard Personalities to work with ", "Claris Health", "What was your biggest challenge at NSS", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" }
+                    { 1, "OhmyZsh on Mac side and GitBash on WindowsSide", "Maize Analytics asked this", "Tell me about what you use in the CommandLine", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" },
+                    { 2, "Confidence Level", "Kyle from Infoworks - during Mock Interview", "What has been your greatest weakness", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" },
+                    { 3, "Hard Personalities to work with ", "Claris Health", "What was your biggest challenge at NSS", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" }
                 });
 
             migrationBuilder.InsertData(
@@ -287,10 +287,10 @@ namespace Seekerz.Migrations
                 columns: new[] { "JobId", "CompanyId", "IsActive", "PersonalNotes", "Position", "ToldNss", "UserId" },
                 values: new object[,]
                 {
-                    { 3, 1, true, "Interviewed with Chase Ramsey - have a 2nd interview scheduled", "Technical Operations", "knows that I have a technical interview scheduled", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                    { 4, 1, false, "Over It", "Executive Assistant", "They don't", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                    { 1, 2, true, "Liked the Company and is growing dramatically over the next year.", "Software Developer 1", "Nss KNows - employer came in to NSS to interview", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" },
-                    { 2, 3, true, "Had a mock interview that could turn into a real one.", "Software Developer", "Kristin knows about the mock interview might turn into a real one", "866658cd-4f6a-4a4d-bca6-4b6327b98d42" }
+                    { 3, 1, true, "Interviewed with Chase Ramsey - have a 2nd interview scheduled", "Technical Operations", "knows that I have a technical interview scheduled", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" },
+                    { 4, 1, false, "Over It", "Executive Assistant", "They don't", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" },
+                    { 1, 2, true, "Liked the Company and is growing dramatically over the next year.", "Software Developer 1", "Nss KNows - employer came in to NSS to interview", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" },
+                    { 2, 3, true, "Had a mock interview that could turn into a real one.", "Software Developer", "Kristin knows about the mock interview might turn into a real one", "dfa8ffa3-2964-411c-bbd1-3f79e8cae0bf" }
                 });
 
             migrationBuilder.InsertData(
