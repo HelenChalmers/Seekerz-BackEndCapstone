@@ -86,13 +86,19 @@ namespace Seekerz.Controllers
 
                 //Add userId to Model
                 company.UserId = user.Id;
+                //if (company.URL = "")
+                //{
+                //    string 
+                //}
+
+                
 
                 if (company.URL != null && !company.URL.Contains("http://") || !company.URL.Contains("https://"))
                 {
                     string fixer = "http://";
                     fixer += company.URL;
                     company.URL = fixer;
-                }
+                } 
                 _context.Add(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
