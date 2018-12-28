@@ -93,12 +93,16 @@ namespace Seekerz.Controllers
 
                 
 
-                if (company.URL != null && !company.URL.Contains("http://") || !company.URL.Contains("https://"))
+                if(string.IsNullOrEmpty(company.URL))
+                {
+                    company.URL = null;
+                } else if ( !string.IsNullOrEmpty(company.URL) && !company.URL.Contains("http://") || !company.URL.Contains("https://"))
                 {
                     string fixer = "http://";
                     fixer += company.URL;
                     company.URL = fixer;
                 } 
+                
                 _context.Add(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
