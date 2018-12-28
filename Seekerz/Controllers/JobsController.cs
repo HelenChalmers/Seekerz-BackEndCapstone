@@ -249,7 +249,21 @@ namespace Seekerz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var job = await _context.Job.FindAsync(id);
+            //gets the job user wants to delete and the tasks associated with it
+            var job = await _context.Job
+                .Include(j => j.UserTasks)
+                .SingleOrDefaultAsync(j => j.JobId == id);
+
+            //if there are tasks on the job, loop over them and delete them before deleting the job
+            if (job.UserTasks.Count > 0)
+            {
+                foreach (TaskToDo tasktodo in job.UserTasks)
+                {
+                    _context.Remove(tasktodo);
+                }
+            }
+
+            //deletes job and redirects to the index page.
             _context.Job.Remove(job);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
