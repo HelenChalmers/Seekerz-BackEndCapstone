@@ -179,8 +179,8 @@ namespace Seekerz.Data
                    NewTask = "Study-Technical Interview",
                    CompleteDate = new DateTime(2018, 12, 18, 13, 30, 00),
                    IsCompleted = false,
-                   JobId = 3,
-                   UserId = Helen.Id
+                   JobId = 3
+                   
                },
                new TaskToDo()
                {
@@ -188,8 +188,8 @@ namespace Seekerz.Data
                    NewTask = "Follow up with Claris Health",
                    CompleteDate = new DateTime(2018, 12, 17, 12, 30, 00),
                    IsCompleted = false,
-                   JobId = 1,
-                   UserId = Helen.Id
+                   JobId = 1
+                   
                },
                new TaskToDo()
                {
@@ -197,8 +197,8 @@ namespace Seekerz.Data
                    NewTask = "Follow up with Infoworks",
                    CompleteDate = new DateTime(2018, 12, 17, 12, 30, 00),
                    IsCompleted = false,
-                   JobId = 3,
-                   UserId = Helen.Id
+                   JobId = 3
+             
                },
                new TaskToDo()
                {
@@ -206,8 +206,7 @@ namespace Seekerz.Data
                    NewTask = "Take Pup for walk",
                    CompleteDate = new DateTime(2018, 12, 17, 12, 30, 00),
                    IsCompleted = false,
-                   JobId = 5,
-                   UserId = user.Id
+                   JobId = 5
                }
                );
 
