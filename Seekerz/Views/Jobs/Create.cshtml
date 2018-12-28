@@ -4,26 +4,26 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create A Job</h2>
 
-<h4>Job</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Job.Position" class="control-label"></label>
+                New Position
                 <input asp-for="Job.Position" class="form-control" />
                 <span asp-validation-for="Job.Position" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Job.PersonalNotes" class="control-label"></label>
+               Personal Notes
                 <input asp-for="Job.PersonalNotes" class="form-control" />
                 <span asp-validation-for="Job.PersonalNotes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Job.ToldNss" class="control-label"></label>
+                Reported to NSS?
                 <input asp-for="Job.ToldNss" class="form-control" />
                 <span asp-validation-for="Job.ToldNss" class="text-danger"></span>
             </div>
@@ -39,7 +39,7 @@
                 <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>*@
             <div class="form-group">
-                <label asp-for="Job.CompanyId" class="control-label"></label>
+                Which Company?
                 <select asp-for="Job.CompanyId" class="form-control" asp-items="Model.UsersCompanies"></select>
                 <span asp-validation-for="Job.CompanyId" class="text-danger"></span>
             </div>
