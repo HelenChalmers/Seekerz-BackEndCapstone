@@ -34,24 +34,34 @@ namespace Seekerz.Controllers
         {
             var user = await GetCurrentUserAsync();
 
-            TaskToDoIndexViewModel viewmodel = new TaskToDoIndexViewModel();
+            //TaskToDoIndexViewModel viewmodel = new TaskToDoIndexViewModel();
 
-            var getUser = _context.Job
-                .Include(j => j.JobId)
-                .Include(j => j.Position)
-                .Where(j => j.UserId == user.Id);
+            
+
+            //var userjob  = _context.Job
+            //    .Include(j => j.JobId)
+            //    .Include(j => j.Position)
+            //    .Include(j => j.UserTasks)
+            //    .FirstOrDefaultAsync(j => j.UserId == user.Id);
 
             var tasks = _context.TaskToDo
-                .Include(td => td.NewTask)
-                .Include(td => td.CompleteDate)
-                .Include(td => td.Jobs)
-                .Where(td => td.JobId == getUser.JobId)
-                 
+                //.Include(td => td.NewTask)
+                //.Include(td => td.CompleteDate)
+                //.Include(td => td.Jobs)
+                .Where(td => td.Jobs.UserId == user.Id)
+                .ToListAsync();
 
+
+
+
+            //viewmodel.job = userjob;
+            //viewmodel.tasktodo = tasks;
+
+            
 
 
             //var applicationDbContext = _context.TaskToDo.Include(t => t.Jobs);
-            return View(await userjobs);
+            return View(await tasks);
         }
 
         // GET: TaskToDoes/Details/5
