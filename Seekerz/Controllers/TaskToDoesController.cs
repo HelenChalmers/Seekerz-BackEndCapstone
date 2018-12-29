@@ -35,8 +35,8 @@ namespace Seekerz.Controllers
 
             
             var tasks = _context.TaskToDo
-                
-                .Where(td => td.Jobs.UserId == user.Id)
+                .OrderBy(td => td.CompleteDate)
+                .Where(td => td.Jobs.UserId == user.Id && td.IsCompleted == false)
                 .ToListAsync();
             
             return View(await tasks);
