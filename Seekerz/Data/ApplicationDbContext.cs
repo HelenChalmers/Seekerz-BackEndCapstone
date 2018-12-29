@@ -45,7 +45,7 @@ namespace Seekerz.Data
             {
                 FirstName = "Admina",
                 LastName = "Straytor",
-                UserName = "Admina",
+                UserName = "admin@admin.com",
                 NormalizedUserName = "ADMIN@ADMIN.COM",
                 Email = "admin@admin.com",
                 NormalizedEmail = "ADMIN@ADMIN.COM",
@@ -62,8 +62,8 @@ namespace Seekerz.Data
             {
                 FirstName = "Helen",
                 LastName = "Chalmers",
-                UserName = "Helen",
-                NormalizedUserName = "HChALMERS23@GMAIL.COM",
+                UserName = "hchalmers23@gmail.com",
+                NormalizedUserName = "HCHALMERS23@GMAIL.COM",
                 Email = "hchalmers23@gmail.com",
                 NormalizedEmail = "HCHALMERS23@GMAIL.COM",
                 EmailConfirmed = true,
@@ -72,7 +72,7 @@ namespace Seekerz.Data
             };
 
             var passwordHash2 = new PasswordHasher<ApplicationUser>();
-            Helen.PasswordHash = passwordHash2.HashPassword(Helen, "helen*23");
+            Helen.PasswordHash = passwordHash2.HashPassword(Helen, "Helen23*");
             modelBuilder.Entity<ApplicationUser>().HasData(Helen);
 
 
