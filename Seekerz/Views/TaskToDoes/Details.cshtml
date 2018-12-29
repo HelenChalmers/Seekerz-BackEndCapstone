@@ -4,32 +4,42 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Task Details</h2>
 
 <div>
-    <h4>TaskToDo</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NewTask)
+            Task
         </dt>
         <dd>
             @Html.DisplayFor(model => model.NewTask)
         </dd>
+
+
+        @if (Model.IsCompleted == true)
+        {
+            <dd>
+                Good Job!  You have finished this task!
+            </dd>
+        }
+        else
+        {
+            <dd>
+                You still need to work on this task! You can do it!
+            </dd>
+        }
         <dt>
-            @Html.DisplayNameFor(model => model.CompleteDate)
+           Your Goal Date
         </dt>
         <dd>
             @Html.DisplayFor(model => model.CompleteDate)
         </dd>
+
+        
         <dt>
-            @Html.DisplayNameFor(model => model.IsCompleted)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsCompleted)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Jobs)
+            Position
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Jobs.Position)
@@ -38,5 +48,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.TaskToDoId">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.TaskToDoId">Delete</a> |
     <a asp-action="Index">Back to Position</a>
 </div>
