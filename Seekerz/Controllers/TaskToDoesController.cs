@@ -31,9 +31,17 @@ namespace Seekerz.Controllers
         // GET: TaskToDoes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.TaskToDo.Include(t => t.Jobs);
-            return View(await applicationDbContext.ToListAsync());
+            var user = await GetCurrentUserAsync();
+
+            
+            var tasks = _context.TaskToDo
+                
+                .Where(td => td.Jobs.UserId == user.Id)
+                .ToListAsync();
+            
+            return View(await tasks);
         }
+
 
         // GET: TaskToDoes/Details/5
         public async Task<IActionResult> Details(int? id)
