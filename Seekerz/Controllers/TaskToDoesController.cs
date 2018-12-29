@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Seekerz.Data;
 using Seekerz.Models;
 using Seekerz.Models.JobViewModels;
+using Seekerz.Models.TaskToDoViewModels;
 
 namespace Seekerz.Controllers
 {
@@ -31,8 +32,26 @@ namespace Seekerz.Controllers
         // GET: TaskToDoes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.TaskToDo.Include(t => t.Jobs);
-            return View(await applicationDbContext.ToListAsync());
+            var user = await GetCurrentUserAsync();
+
+            TaskToDoIndexViewModel viewmodel = new TaskToDoIndexViewModel();
+
+            var getUser = _context.Job
+                .Include(j => j.JobId)
+                .Include(j => j.Position)
+                .Where(j => j.UserId == user.Id);
+
+            var tasks = _context.TaskToDo
+                .Include(td => td.NewTask)
+                .Include(td => td.CompleteDate)
+                .Include(td => td.Jobs)
+                .Where(td => td.JobId == getUser.JobId)
+                 
+
+
+
+            //var applicationDbContext = _context.TaskToDo.Include(t => t.Jobs);
+            return View(await userjobs);
         }
 
         // GET: TaskToDoes/Details/5
