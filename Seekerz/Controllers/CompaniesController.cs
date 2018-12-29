@@ -86,11 +86,7 @@ namespace Seekerz.Controllers
 
                 //Add userId to Model
                 company.UserId = user.Id;
-                //if (company.URL = "")
-                //{
-                //    string 
-                //}
-
+                
                 
 
                 if(string.IsNullOrEmpty(company.URL))
@@ -123,6 +119,9 @@ namespace Seekerz.Controllers
             {
                 return NotFound();
             }
+
+           
+
             return View(company);
         }
 
@@ -153,6 +152,17 @@ namespace Seekerz.Controllers
 
                 //Add userId to Model
                 company.UserId = user.Id;
+
+                if (string.IsNullOrEmpty(company.URL))
+                {
+                    company.URL = null;
+                }
+                else if (!string.IsNullOrEmpty(company.URL) && !company.URL.Contains("http://") || !company.URL.Contains("https://"))
+                {
+                    string fixer = "http://";
+                    fixer += company.URL;
+                    company.URL = fixer;
+                }
 
                 try
                 {
