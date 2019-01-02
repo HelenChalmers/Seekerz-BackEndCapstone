@@ -47,7 +47,7 @@
                             {
                                 if (task.IsCompleted == false)
                                 {
-                                    <li><a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a></li>
+                                    <ul><a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a></ul>
                                 }
                             }
 
@@ -61,7 +61,7 @@
                                 {
                                     if (task.IsCompleted == true)
                                     {
-                                        <li><a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a></li>
+                                        <ul><a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a></ul>
                                     }
                                 }
                             </ul>
