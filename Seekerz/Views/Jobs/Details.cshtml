@@ -14,6 +14,9 @@
             <div class="flip-card-inner" id="flipbutton">
                 <div class="flip-card-front">
                     <div class="form-group">
+                        <div id="jobtitle">
+                            <dt>@Html.DisplayFor(model => model.Position) Details</dt>
+                        </div>
                     <dt>
                         Position
                     </dt>
@@ -44,37 +47,38 @@
                         <dd>
                             @Html.DisplayFor(model => model.Company.Name)
                         </dd>
-                        
-                        
+          
                     </div>
-
+                    <h6 class="footer">Click for Tasks</h6>
                 </div>
                 <div class="flip-card-back">
-                    <dt>Tasks</dt>
-                    <dd>
-                        <ul>
-                            @foreach (var task in Model.UserTasks)
-                            {
-                                if (task.IsCompleted == false)
+                    <div class="form-group">
+                        <dt>Tasks</dt>
+                    </div>
+                    <dd class="tasklist">
+                        <div>
+                                @foreach (var task in Model.UserTasks)
                                 {
-                                    <ul><a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a></ul>
+                                    if (task.IsCompleted == false)
+                                    {
+                                        <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
+                                    }
                                 }
-                            }
-
-                        </ul>
+                        </div>
                     </dd>
-
+                    <div class="form-group">
                         <dt>Finished Tasks</dt>
-                        <dd>
-                            <ul>
+                    </div>
+                        <dd class="tasklist">
+                            <div>
                                 @foreach (var task in Model.UserTasks)
                                 {
                                     if (task.IsCompleted == true)
                                     {
-                                        <ul><a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a></ul>
+                                        <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
                                     }
                                 }
-                            </ul>
+                            </div>
                         </dd>
                     </div>
                 </div>
@@ -88,5 +92,5 @@
     <a asp-action="Edit" asp-route-id="@Model.JobId" class="btn btn-warning btn-sm">Edit</a> |
     <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.JobId" class="btn btn-success btn-sm">Add a Task</a> |
     <a asp-action="Delete" asp-route-id="@Model.JobId" class="btn btn-danger btn-sm">Delete Job</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
 </div>
