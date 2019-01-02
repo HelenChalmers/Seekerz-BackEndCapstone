@@ -11,32 +11,42 @@
     <hr />
     
         <div class="flip-card">
-            <div class="flip-card-inner">
+            <div class="flip-card-inner" id="flipbutton">
                 <div class="flip-card-front">
+                    <div class="form-group">
                     <dt>
                         Position
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.Position)
                     </dd>
-                    <dt>
-                        Personal Notes
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.PersonalNotes)
-                    </dd>
-                    <dt>
-                        Have you told NSS?
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.ToldNss)
-                    </dd>
-                    <dt>
-                        Company
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Company.Name)
-                    </dd>
+                    </div>
+                    <div class="form-group">
+                        <dt>
+                            Personal Notes
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.PersonalNotes)
+                        </dd>
+                    </div>
+                    <div class="form-group">
+                        <dt>
+                            Have you told NSS?
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ToldNss)
+                        </dd>
+                    </div>
+                    <div class="form-group">
+                        <dt>
+                            Company
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Company.Name)
+                        </dd>
+                        
+                        
+                    </div>
 
                 </div>
                 <div class="flip-card-back">
