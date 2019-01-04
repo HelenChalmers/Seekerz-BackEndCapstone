@@ -49,5 +49,6 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model.TaskToDoId" class="btn btn-warning btn-sm">Edit</a> |
     <a asp-action="Delete" asp-route-id="@Model.TaskToDoId" class="btn btn-danger btn-sm">Delete</a> |
-    <a asp-action="Index" class="btn btn-info">To Task List</a>
+    <a asp-action="Index" class="btn btn-info">To Task List</a> |
+    <a href="javascript:history.go(-1)" class="btn btn-info">Back to Position</a>
 </div>
