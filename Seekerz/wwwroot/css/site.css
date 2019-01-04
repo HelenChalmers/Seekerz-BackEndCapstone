@@ -109,3 +109,8 @@ body {
 .footer {
     text-align: right;
 }
+
+#searchbar {
+    margin-top: 10px;
+
+}
