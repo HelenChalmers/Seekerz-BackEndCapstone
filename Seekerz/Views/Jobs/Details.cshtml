@@ -96,9 +96,9 @@
 
 
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.JobId" class="btn btn-warning btn-sm">Edit</a> |
-        <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.JobId" class="btn btn-success btn-sm">Add a Task</a> |
-        <a asp-action="Delete" asp-route-id="@Model.JobId" class="btn btn-danger btn-sm">Delete Job</a> |
-        <a asp-action="Index" class="btn btn-info">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model.JobId" class="btn btn-warning btn-sm Editbutton">Edit</a> |
+        <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.JobId" class="btn btn-success btn-sm CreateButton">Add a Task</a> |
+        <a asp-action="Delete" asp-route-id="@Model.JobId" class="btn btn-danger btn-sm DeleteButton">Delete Job</a> |
+        <a asp-action="Index" class="btn btn-info BackButton">Back to List</a>
     </div>
 </div>
