@@ -65,13 +65,13 @@
                 <div class="form-group">
                     <dt class="Mono">Tasks</dt>
                 </div>
-                <dd class="tasklist">
+                <dd>
                     <div>
                         @foreach (var task in Model.UserTasks)
                         {
                             if (task.IsCompleted == false)
                             {
-                                <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
+                                <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId" class="tasklist">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
                             }
                         }
                     </div>
@@ -86,7 +86,7 @@
                         {
                             if (task.IsCompleted == true)
                             {
-                                <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
+                                <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId" class="tasklist">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
                             }
                         }
                     </div>

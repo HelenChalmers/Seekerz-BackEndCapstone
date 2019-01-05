@@ -101,6 +101,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    color: black;
 }
 #jobtitle {
     text-align: center;
@@ -144,8 +145,10 @@ body {
 
 .activejoblist {
     color: black;
-    font-family: 'Bitter', serif;
+    font-family: 'B612 Mono', monospace;
 }
+
+
 
 .AdventurePic {
     width: 65%;

@@ -14,26 +14,26 @@
     <div class="card-body">
         <table class="table">
             <thead>
-                @*<tr>*@
+                <tr>
                 <h4 class="card-title Mono">
-                    @*<th>*@
                     <br />
                     <br />
                     <br />
-                    Active Positions
-                    @*</th>*@
+                    <th class="Mono">
+                        Active Positions
+                    </th>
                 </h4>
-                @*</tr>*@
+                </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <h6 class="card-subtitle mb-2 text-muted"> <a asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a></h6>
-                    @*<tr>
+                    @*<h6 class="card-subtitle mb-2 text-muted"> <a asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a></h6>*@
+                    <tr>
                             <td>
                                 <h6 class="card-subtitle mb-2 text-muted"> <a asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a></h6>
                             </td>
-                        </tr>*@
+                        </tr>
                 }
             </tbody>
         </table>
