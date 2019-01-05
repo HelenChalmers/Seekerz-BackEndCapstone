@@ -5,8 +5,11 @@
     ViewData["Title"] = "Details";
 }
 <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=B612+Mono" rel="stylesheet">
+
 <div class="background">
-    <h2 class="VarelaFont"> @Html.DisplayFor(model => model.Position) Details</h2>
+    <h2 class="Mono"> @Html.DisplayFor(model => model.Position) Details</h2>
 
 
 
@@ -19,7 +22,7 @@
                 <div class="form-group">
 
                     <dl class="dl-horizontal">
-                        <dt class="VarelaFont">
+                        <dt class="Mono positionTitle">
                             Position
                         </dt>
                         <dd>
@@ -30,7 +33,7 @@
                 <dl class="dl-horizontal">
                     <div class="form-group">
 
-                        <dt class="VarelaFont">
+                        <dt class="Mono">
                             Personal Notes
                         </dt>
                         <dd>
@@ -38,15 +41,15 @@
                         </dd>
                     </div>
                     <div class="form-group">
-                        <dt class="VarelaFont">
-                            Have you told NSS?
+                        <dt class="Mono">
+                            Status with NSS?
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.ToldNss)
                         </dd>
                     </div>
                     <div class="form-group">
-                        <dt class="VarelaFont">
+                        <dt class="Mono">
                             Company
                         </dt>
                         <dd>
@@ -54,12 +57,12 @@
                         </dd>
 
                     </div>
-                    <h6 class="footer">Click for Tasks</h6>
+                    <h6 class="footer Mono">Click for Tasks</h6>
                     </d1>
             </div>
             <div class="flip-card-back">
                 <div class="form-group">
-                    <dt>Tasks</dt>
+                    <dt class="Mono">Tasks</dt>
                 </div>
                 <dd class="tasklist">
                     <div>
@@ -74,7 +77,7 @@
                 </dd>
                 <div class="form-group">
                     <br />
-                    <dt>Finished Tasks</dt>
+                    <dt class="Mono"> Finished Tasks</dt>
                 </div>
                 <dd class="tasklist">
                     <div>

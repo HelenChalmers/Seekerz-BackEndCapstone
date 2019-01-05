@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Your Question</h2>
 
-<h4>QA</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,25 +14,21 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="QAId" />
             <div class="form-group">
-                <label asp-for="Question" class="control-label"></label>
+                <label>Question</label>
                 <input asp-for="Question" class="form-control" />
                 <span asp-validation-for="Question" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Answer" class="control-label"></label>
+                <label>Answer</label>
                 <input asp-for="Answer" class="form-control" />
                 <span asp-validation-for="Answer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
+                <label>Notes</label>
                 <input asp-for="Notes" class="form-control" />
                 <span asp-validation-for="Notes" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-info CreateButton" />
             </div>

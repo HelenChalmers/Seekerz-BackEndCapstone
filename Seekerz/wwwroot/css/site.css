@@ -3,7 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #BFBAAE
+    background-color: #e9e7e2;
 }
 
 /* Wrapping element */
@@ -39,8 +39,8 @@ body {
 
 .flip-card {
     background-color: transparent;
-    width: 500px;
-    height: 400px;
+    width: 600px;
+    height: 300px;
     border: 1px solid #f1f1f1;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
@@ -85,14 +85,13 @@ body {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-    background-color: #d9d9d9;
+    background-color: #5CE49A;
     color: black;
-
 }
 
 /* Style the back side */
 .flip-card-back {
-    background-color: #d9d9d9;
+    background-color: #5CE49A;
     color: black;
     transform: rotateY(180deg);
     text-align: left;
@@ -108,6 +107,7 @@ body {
     font-weight: bold;
 }
 .footer {
+    margin-top: 20%;
     text-align: right;
 }
 
@@ -144,5 +144,28 @@ body {
 
 .activejoblist {
     color: black;
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'Bitter', serif;
+}
+
+.AdventurePic {
+    width: 65%;
+    border-radius: 25px;
+    margin-top: 50px;
+    margin-left: 40px;
+}
+
+.Title {
+    font-family: 'Bitter', serif;
+}
+
+.checklabel {
+    font-weight: bold;
+}
+
+.BitterFont {
+    font-family: 'Bitter', serif;
+}
+
+.Mono {
+    font-family: 'B612 Mono', monospace;
 }
