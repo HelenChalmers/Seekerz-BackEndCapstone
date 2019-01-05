@@ -13,6 +13,7 @@ using Seekerz.Models.JobViewModels;
 
 namespace Seekerz.Controllers
 {
+    [Authorize]
     public class JobsController : Controller
     {
         private readonly ApplicationDbContext _context;

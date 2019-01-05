@@ -4,14 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Tasks To Be Completed</h2>
+<h2 class="Mono">Tasks To Be Completed</h2>
 
 <p>
    
 </p>
 <table class="table">
     <thead>
-        <tr>
+        @*<tr>
             <th>
                 Tasks    
             </th>
@@ -20,8 +20,10 @@
             </th>
            
             <th></th>
-        </tr>
+        </tr>*@
     </thead>
+    <br />
+    
     <tbody>
 @foreach (var item in Model) {
         <tr>

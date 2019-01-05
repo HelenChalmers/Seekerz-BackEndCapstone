@@ -4,16 +4,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h2>Archived Jobs:</h2>
+<h2 class="Mono">Archived Positions</h2>
 
 
 <table class="table">
-    <thead>
+    @*<thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Position)
             </th>
-    </thead>
+        </tr>    
+     </thead>*@
     <tbody>
         @foreach (var item in Model)
         {

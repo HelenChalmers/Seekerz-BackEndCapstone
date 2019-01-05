@@ -4,18 +4,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Frequently Asked Interview Questions</h2>
+<link href="https://fonts.googleapis.com/css?family=B612+Mono" rel="stylesheet">
+
+<h2 class="Mono">Frequently Asked Interview Questions</h2>
 
 
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Question)
-            </th>
-            
-        </tr>
-    </thead>
+   <br />
+    <br />
+    
+
     <tbody>
 @foreach (var item in Model) {
         <tr>
@@ -32,6 +30,7 @@
 }
     </tbody>
 </table>
+<br />
 
 <p>
     <a asp-action="Create" class="btn btn-success btn-sm CreateButton">Create New Question</a>
