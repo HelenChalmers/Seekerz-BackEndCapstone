@@ -4,11 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Your Companies</h2>
+<h2 class="Mono">Your Companies</h2>
 
 
 <table class="table">
-    <thead>
+    @*<thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -16,7 +16,7 @@
             
             <th></th>
         </tr>
-    </thead>
+    </thead>*@
     <tbody>
 @foreach (var item in Model) {
         <tr>
