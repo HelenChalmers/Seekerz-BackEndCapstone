@@ -4,6 +4,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
 <h3>Welcome To Seekerz!</h3>
 
 <p>The app to simplify and organize the job hunt process for the active Job Seeker. </p>
@@ -25,9 +27,11 @@
                 @*</tr>*@
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
-                    <h6 class="card-subtitle mb-2 text-muted"> <a asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a></h6>
+                
+                    @foreach (var item in Model)
+                    {
+                       <ul> <h6 > <a  class="activejoblist" asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a></h6>
+                </ul>
                     @*<tr>
                 <td>
                     <h6 class="card-subtitle mb-2 text-muted"> <a asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a></h6>
