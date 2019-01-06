@@ -55,14 +55,61 @@ body {
     transform-style: preserve-3d;
 }
 
-/*.flip-card-inner dt {
-    text-align: left
-}*/
+.OuterOuterJobList {
+    display: flex;
+    flex-direction: column;
+}
+.outerouterouterJoblist{
+    display:flex;
+    justify-content:center;
+}
+
+#buttondiv {
+   display:flex;
+   align-self:flex-end;
+}
+.JobListOuter {
+    background-color: transparent;
+    width: 600px;
+    height: 300px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px;
+}
+
+.JobListCard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    padding: 1em;
+    box-shadow: 0 8px 6px -6px rgba( 0, 0, 0, .7);
+    border-radius: 5px;
+    background-color: #5CE49A;
+    color: black;
+}
+
+.JobListCardCenter {
+    display:flex;
+    justify-content:center;
+}
+
+.JobListCardInner {
+    display: flex;
+    flex-direction: column;
+}
+
+#CreateJobButton {
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-start;
+
+}
+
+
+
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-/*.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}*/
+
 
 .on {
     -webkit-transform: rotateY(-180deg);
@@ -99,8 +146,9 @@ body {
 
 .tasklist {
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
     justify-content: flex-start;
+    color: black;
 }
 #jobtitle {
     text-align: center;
@@ -144,8 +192,10 @@ body {
 
 .activejoblist {
     color: black;
-    font-family: 'Bitter', serif;
+    font-family: 'B612 Mono', monospace;
 }
+
+
 
 .AdventurePic {
     width: 65%;

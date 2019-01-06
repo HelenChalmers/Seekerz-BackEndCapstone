@@ -9,40 +9,43 @@
 
 <h3 class="Mono">Welcome To Seekerz!</h3>
 
-<p class="Mono">The app to simplify and organize the job hunt process for the active Job Seeker. </p>
+<p class="Mono">The app that simplifies and organizes the job hunt process for the active Job Seeker. </p>
 <br />
 <br />
 <br />
+<div class="outerouterouterJoblist">
+    <div class="OuterOuterJobList">
+        <div class="JobListOuter">
+            <div class="JobListCard">
+                <div class="JobListCardCenter">
+                    <div class="JobListCardInner">
+                        <table class="table">
+                            <thead>
+                                <h4 class="card-title Mono">Active Positions</h4>
+                            </thead>
+                            <br />
+                            <tbody>
 
-<h4>@*These Are Your Active Jobs.*@</h4>
-<div class="card" style="width: 20rem;">
-    <div class="card-body">
-        <table class="table">
-            <thead>
-                @*<tr>*@
-                <h4 class="card-title Mono">
-                    @*<th>*@
-                    Active Positions
-                    @*</th>*@
-                </h4>
-                @*</tr>*@
-            </thead>
-            <tbody>
-                
-                    @foreach (var item in Model)
-                    {
-                       <ul> <h6 > <a  class="activejoblist" asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a></h6>
-                </ul>
-                    @*<tr>
-                <td>
-                    <h6 class="card-subtitle mb-2 text-muted"> <a asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a></h6>
-                </td>
-            </tr>*@
-                }
-            </tbody>
-        </table>
-        <p>
-            <a asp-controller="Jobs" asp-action="Create" class="btn btn-success btn-sm CreateButton">Create New Position</a>
-        </p>
+                                @foreach (var item in Model)
+                                {
+                                    <p><a class="activejoblist" asp-controller="Jobs" asp-action="Details" asp-route-id="@item.JobId">@Html.DisplayFor(modelItem => item.Position)</a></p>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <div id="buttondiv">
+            <a asp-controller="Jobs" asp-action="Create" class="btn btn-success btn-sm BackButton">Create New Position</a>
         </div>
     </div>
+</div>
+
+
+
+   
+
+
