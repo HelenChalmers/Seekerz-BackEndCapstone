@@ -83,8 +83,6 @@ namespace Seekerz.Controllers
                 //Add userId to Model
                 qA.UserId = user.Id;
 
-
-
                 _context.Add(qA);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -136,6 +134,10 @@ namespace Seekerz.Controllers
 
                 //Add userId to Model
                 qA.UserId = user.Id;
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
                 try
                 {
                     _context.Update(qA);
