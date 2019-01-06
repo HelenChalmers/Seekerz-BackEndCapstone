@@ -37,24 +37,8 @@ body {
     }
 }
 
-.flip-card {
-    background-color: transparent;
-    width: 600px;
-    height: 300px;
-    border: 1px solid #f1f1f1;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
-}
-
-/* This container is needed to position the front and back side */
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: left;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
+/* ------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------Job Index and Home Index Styling -------------------------------------------*/
 .OuterOuterJobList {
     display: flex;
     flex-direction: column;
@@ -68,6 +52,8 @@ body {
    display:flex;
    align-self:flex-end;
 }
+
+/* Start of the card divs */
 .JobListOuter {
     background-color: transparent;
     width: 600px;
@@ -105,8 +91,67 @@ body {
 
 }
 
+/* ------------------------------------END Job Index and Home Index Styling------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------*/
 
 
+
+
+
+/* ------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------Job Detail-------------------------------------------------------------------*/
+
+
+.JobDetailsOuter {
+    display: flex;
+    align-content: center;
+}
+
+.JobDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.JobsDetailFrontOuter {
+    display: flex;
+    align-content:center;
+}
+.JobDetailsFrontInner {
+    display: flex;
+    flex-direction:column;
+}
+
+.JobDetailButtonsOuter {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.JobDetailButtonsInner {
+    display: flex;
+    flex-direction:row;
+    
+    
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 600px;
+    height: 300px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
 
@@ -154,10 +199,14 @@ body {
     text-align: center;
     font-weight: bold;
 }
-.footer {
+/*.footer {
     margin-top: 20%;
     text-align: right;
-}
+}*/
+
+/* -----------------------------------------END JOB DETAIL-------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------*/
+
 
 #searchbar {
     margin-top: 10px;

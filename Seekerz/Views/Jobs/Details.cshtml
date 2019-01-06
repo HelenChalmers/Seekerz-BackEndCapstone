@@ -4,105 +4,106 @@
 @{
     ViewData["Title"] = "Details";
 }
-<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=B612+Mono" rel="stylesheet">
 
-<div class="background">
-    <h2 class="Mono"> @Html.DisplayFor(model => model.Position) Details</h2>
+<div class="background JobDetailsOuter">
+    <div class="JobDetails">
 
+        <h2 class="Mono"> @Html.DisplayFor(model => model.Position) Details</h2>
+        <hr />
 
+        <div class="flip-card">
+            <div class="flip-card-inner" id="flipbutton">
 
-    <hr />
+                <div class="JobsDetailFrontOuter">
+                    <div class="flip-card-front JobDetailsFrontInner">
 
-    <div class="flip-card">
-        <div class="flip-card-inner" id="flipbutton">
-            <div class="flip-card-front">
-                
-                <br />
-                <div class="form-group">
+                        <br />
+                        
+                        <dl class="dl-horizontal">
+                            <div class="form-group">
+                                <dt class="Mono positionTitle">
+                                    Position
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Position)
+                                </dd>
+                            </div>
+                            <div class="form-group">
 
-                    <dl class="dl-horizontal">
-                        <dt class="Mono positionTitle">
-                            Position
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Position)
-                        </dd>
-                    </dl>
+                                <dt class="Mono">
+                                    Personal Notes
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.PersonalNotes)
+                                </dd>
+                            </div>
+                            <div class="form-group">
+                                <dt class="Mono">
+                                    Status with NSS?
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ToldNss)
+                                </dd>
+                            </div>
+                            <div class="form-group">
+                                <dt class="Mono">
+                                    Company
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Company.Name)
+                                </dd>
+                            </div>
+                         </d1>
+                    </div>
                 </div>
-                <dl class="dl-horizontal">
-                    <div class="form-group">
 
-                        <dt class="Mono">
-                            Personal Notes
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.PersonalNotes)
-                        </dd>
-                    </div>
+                <div class="flip-card-back">
                     <div class="form-group">
-                        <dt class="Mono">
-                            Status with NSS?
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.ToldNss)
-                        </dd>
+                        <dt class="Mono">Tasks</dt>
                     </div>
+                    <dd>
+                        <div>
+                            @foreach (var task in Model.UserTasks)
+                            {
+                                if (task.IsCompleted == false)
+                                {
+                                    <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId" class="tasklist">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
+                                }
+                            }
+                        </div>
+                    </dd>
                     <div class="form-group">
-                        <dt class="Mono">
-                            Company
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Company.Name)
-                        </dd>
-
+                        <br />
+                        <dt class="Mono"> Finished Tasks</dt>
                     </div>
-                    
-                    </d1>
+                    <dd>
+                        <div>
+                            @foreach (var task in Model.UserTasks)
+                            {
+                                if (task.IsCompleted == true)
+                                {
+                                    <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId" class="tasklist">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
+                                }
+                            }
+                        </div>
+                    </dd>
+                </div>
             </div>
-            <div class="flip-card-back">
-                <div class="form-group">
-                    <dt class="Mono">Tasks</dt>
-                </div>
-                <dd>
-                    <div>
-                        @foreach (var task in Model.UserTasks)
-                        {
-                            if (task.IsCompleted == false)
-                            {
-                                <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId" class="tasklist">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
-                            }
-                        }
-                    </div>
-                </dd>
-                <div class="form-group">
-                    <br />
-                    <dt class="Mono"> Finished Tasks</dt>
-                </div>
-                <dd>
-                    <div>
-                        @foreach (var task in Model.UserTasks)
-                        {
-                            if (task.IsCompleted == true)
-                            {
-                                <a asp-controller="TaskToDoes" asp-action="Details" asp-route-id="@task.TaskToDoId" class="tasklist">@Html.DisplayFor(modelItem => task.NewTask)</a><br />
-                            }
-                        }
-                    </div>
-                </dd>
+        </div>
+
+        <br />
+        <br />
+        <div class="JobDetailButtonsOuter">
+            <div class="JobDetailButtonsInner">
+                <a asp-action="Edit" asp-route-id="@Model.JobId" class="btn btn-warning btn-sm Editbutton">Edit</a> |
+                <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.JobId" class="btn btn-success btn-sm CreateButton">Add a Task</a> |
+                <a asp-action="Delete" asp-route-id="@Model.JobId" class="btn btn-danger btn-sm DeleteButton">Delete Job</a> |
+                <a asp-action="Index" class="btn btn-info btn-sm BackButton">Back to List</a>
             </div>
         </div>
     </div>
-    <br />
-    <br />
-
-
-
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.JobId" class="btn btn-warning btn-sm Editbutton">Edit</a> |
-        <a asp-controller="TaskToDoes" asp-action="Create" asp-route-id="@Model.JobId" class="btn btn-success btn-sm CreateButton">Add a Task</a> |
-        <a asp-action="Delete" asp-route-id="@Model.JobId" class="btn btn-danger btn-sm DeleteButton">Delete Job</a> |
-        <a asp-action="Index" class="btn btn-info btn-sm BackButton">Back to List</a>
-    </div>
 </div>
+
