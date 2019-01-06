@@ -4,11 +4,23 @@
     ViewData["Title"] = "Details";
 }
 
-<h2 class="Mono">Task Details</h2>
+@if (Model.IsCompleted == true)
+{
 
+    <h3 class="Mono"> Good Job!  You have finished this task!</h3>
+
+}
+else
+{
+    <h3 class="Mono">
+        You still need to work on this task! You can do it!
+    </h3>
+}
 <div>
-    
+
     <hr />
+
+
     <dl class="dl-horizontal">
         <dt>
             Task
@@ -18,26 +30,15 @@
         </dd>
 
 
-        @if (Model.IsCompleted == true)
-        {
-            <dd>
-                Good Job!  You have finished this task!
-            </dd>
-        }
-        else
-        {
-            <dd>
-                You still need to work on this task! You can do it!
-            </dd>
-        }
+
         <dt>
-           Your Goal Date
+            Your Goal Date
         </dt>
         <dd>
             @Html.DisplayFor(model => model.CompleteDate)
         </dd>
 
-        
+
         <dt>
             Position
         </dt>
@@ -48,7 +49,7 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.TaskToDoId" class="btn btn-warning btn-sm editbutton Editbutton">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model.TaskToDoId" class="btn btn-danger btn-sm DeleteButton">Delete</a> |
+    <a asp-action="Delete" asp-route-id="@Model.TaskToDoId" class="btn btn-danger btn-sm DeleteButton"><i class="fas fa-trash"></i></a> |
     <a asp-action="Index" class="btn btn-info BacktoTaskButton">To Task List</a> |
     <a href="javascript:history.go(-1)" class="btn btn-info BackButton">Back</a>
 </div>

@@ -11,25 +11,25 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Question)
+            Question
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Question)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Answer)
+           Answer
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Answer)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Notes)
+            Notes
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Notes)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.User)
+            User
         </dt>
         <dd>
             @Html.DisplayFor(model => model.User.FirstName)
@@ -38,6 +38,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.QAId" class="btn btn-info Editbutton">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model.QAId" class="btn btn-info DeleteButton">Delete</a> |
+    <a asp-action="Delete" asp-route-id="@Model.QAId" class="btn btn-info DeleteButton"><i class="fas fa-trash"></i></a> |
     <a asp-action="Index" class="btn btn-info BackButton">Back to List</a>
 </div>
