@@ -29,7 +29,6 @@ namespace Seekerz.Controllers
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
-
         // GET: QAs
         public async Task<IActionResult> Index()
         {
@@ -135,7 +134,10 @@ namespace Seekerz.Controllers
 
                 //Add userId to Model
                 qA.UserId = user.Id;
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
                 try
                 {
                     _context.Update(qA);
