@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h4 class="Mono"Create A Question</h4>
+<h3 class="Mono">Create A Question</h3>
 
 
 <hr />
@@ -13,24 +13,21 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Question" class="control-label"></label>
+                <label>Question</label>
                 <input asp-for="Question" class="form-control" />
                 <span asp-validation-for="Question" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Answer" class="control-label"></label>
+                <label>Answer</label>
                 <input asp-for="Answer" class="form-control" />
                 <span asp-validation-for="Answer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
+                <label>Notes</label>
                 <input asp-for="Notes" class="form-control" />
                 <span asp-validation-for="Notes" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>*@
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-info CreateButton" />
             </div>
