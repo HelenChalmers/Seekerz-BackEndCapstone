@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,15 +12,22 @@ using Seekerz.Models;
 
 namespace Seekerz.Controllers
 {
-    [Authorize]
+    
     public class QAsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public QAsController(ApplicationDbContext context)
+        //method gets user
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public QAsController(ApplicationDbContext ctx,
+                          UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _context = ctx;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: QAs
         public async Task<IActionResult> Index()
@@ -61,8 +69,22 @@ namespace Seekerz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("QAId,Question,Answer,Notes")] QA qA)
         {
+            //Remove user and userid
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
+
             if (ModelState.IsValid)
             {
+                //Get Current User
+                var user = await GetCurrentUserAsync();
+                //Add user to model
+                qA.User = user;
+
+                //Add userId to Model
+                qA.UserId = user.Id;
+
+
+
                 _context.Add(qA);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -100,8 +122,20 @@ namespace Seekerz.Controllers
                 return NotFound();
             }
 
+            //Remove user and userid
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
+
             if (ModelState.IsValid)
             {
+                //Get Current User
+                var user = await GetCurrentUserAsync();
+
+                //Add user to model
+                qA.User = user;
+
+                //Add userId to Model
+                qA.UserId = user.Id;
                 try
                 {
                     _context.Update(qA);
