@@ -7,56 +7,17 @@
 
 
 <div class="row">
-    <div class="col-md-4">
-        <section>
-            <form method="post">
-                <h5>Please Log In</h5>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-info BackButton">Log in</button>
-                </div>
-                <div class="form-group">
-
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-info CreateButton">Register</a>
-                    </p>
-
-                    <p>
-                        <a asp-page="./ForgotPassword">Forgot password?</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-           
+
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
-                       <img src="~/images/WorkPic.jpg" alt="TheAdventureBegins" class="AdventurePic"/>
+                        <img src="~/images/SEEKERZ.jpg" alt="SeekerzLogo" class="AdventurePic" />
                     </div>
+
                 }
                 else
                 {
@@ -74,6 +35,54 @@
             }
         </section>
     </div>
+    <div class="col-md-4">
+        <section>
+            <form method="post">
+                <div class="LoginOuter">
+                    <div class="LoginInner">
+                        
+                        <div class="LoginForm">
+                            <h3>Log In</h3>
+                            <hr />
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Input.Email"></label>
+                                <input asp-for="Input.Email" class="form-control" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Password"></label>
+                                <input asp-for="Input.Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label asp-for="Input.RememberMe">
+                                        <input asp-for="Input.RememberMe" />
+                                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info BackButton">Log in</button>
+                            </div>
+                            <div class="form-group">
+
+                                <p>
+                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-info CreateButton">Register</a>
+                                </p>
+
+                                <p>
+                                    <a asp-page="./ForgotPassword">Forgot password?</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+
 </div>
 
 @section Scripts {
