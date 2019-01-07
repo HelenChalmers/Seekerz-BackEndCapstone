@@ -31,7 +31,7 @@ namespace Seekerz.Models
         [Required]
         [Display(Name = "Company Name")]
         public int CompanyId { get; set; }
-        [Required]
+        
         public Company Company { get; set; }
 
         public virtual ICollection<TaskToDo> UserTasks { get; set; }

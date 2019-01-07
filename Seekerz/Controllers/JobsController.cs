@@ -123,13 +123,20 @@ namespace Seekerz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(JobCreateViewModel viewModel)
         {
+
             //Remove User, UserId and IsActive
             ModelState.Remove("Job.User");
             ModelState.Remove("Job.UserId");
+
+            ModelState.Remove("Job.Company");
             
 
-            //Get current user
-            ApplicationUser user = await GetCurrentUserAsync();
+            //Check if model state is valid
+            if (ModelState.IsValid)
+            {
+
+                //Get current user
+                ApplicationUser user = await GetCurrentUserAsync();
 
                 //Add user to Model
                 viewModel.Job.User = user;
@@ -138,9 +145,6 @@ namespace Seekerz.Controllers
                 //Set IsActive
                 viewModel.Job.IsActive = true;
 
-            //Check if model state is valid
-            if (ModelState.IsValid)
-            {
                 _context.Add(viewModel.Job);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
