@@ -134,6 +134,10 @@ namespace Seekerz.Controllers
 
                 //Add userId to Model
                 qA.UserId = user.Id;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                 try
                 {
                     _context.Update(qA);
