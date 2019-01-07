@@ -2,7 +2,7 @@
 
 # Welcome to Seekerz
 
-A Job Tracker App for the Active Job Seeker
+A Job Tracker App for the Active Job Seeker.
 
 ## How to Run
 
@@ -11,5 +11,16 @@ A Job Tracker App for the Active Job Seeker
 3. In your package manager console, write "add-migration Initial"
 4. Then "update-database"
 5. Run the Project 
+
+## Technologies
+
+* ASP.NET
+* C#
+* Bootstrap
+* HTML
+* JavaScript
+* CSS
+* FontAwesome
+* Canva 
 
 ![Seekerz ERD](https://raw.githubusercontent.com/HelenChalmers/Seekerz-BackEndCapstone/master/Seekerz/wwwroot/images/SeekerzERD.png) 
