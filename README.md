@@ -1,1 +1,14 @@
-# Hello, This is Seekerz, a Job Tracker for the active Job Seeker
+![Seekerz Logo](https://Seekerz/wwwroot/images/SEEKERZ.jpg) 
+
+# Welcome to Seekerz
+
+A Job Tracker App for the Active Job Seeker
+
+## How to Run
+
+1. Clone down this repo and cd into project
+2. In your teminal/git bash, Start Seekerz.sln
+3. In your package manager console, write "add-migration Initial"
+4. Then "update-database"
+5. Run the Project 
+
