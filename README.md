@@ -24,3 +24,7 @@ A Job Tracker App for the Active Job Seeker.
 * Canva 
 
 ![Seekerz ERD](https://raw.githubusercontent.com/HelenChalmers/Seekerz-BackEndCapstone/master/Seekerz/wwwroot/images/SeekerzERD.png) 
+
+## Acknowledgements
+
+Special Thanks to Steve Brownlee, Brenda Long, Jenna Solis, Kimmy Bird, Meg Ducharme, Andy Collins and the rest of the NSS crew for pouring their hearts and knowledge into me and my amazing cohort. 
