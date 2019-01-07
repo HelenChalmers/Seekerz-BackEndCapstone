@@ -150,14 +150,17 @@ body {
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    align-content: space-between;
+   
 }
 
 .JobDetailButtonsInner {
-    display: flex;
+    
     flex-direction:row;
-    
-    
+    justify-content: space-between;
+}
+
+.jdedit {
+    margin-right:5%;
 }
 
 .flip-card {
@@ -295,4 +298,18 @@ body {
 
 .Mono {
     font-family: 'B612 Mono', monospace;
+}
+
+/* --------------------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------TaskDetailPage--------------------------------------------------------------------------*/
+
+.TaskDetailButtonsOuter {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.TaskDetailButtonsInner {
+    flex-direction: row;
+    justify-content: space-between;
 }
