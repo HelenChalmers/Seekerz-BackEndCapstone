@@ -1,4 +1,4 @@
-![Seekerz Logo](https://camo.githubusercontent.com/HelenChalmers/Seekerz-BackEndCapstone/master/Seekerz/wwwroot/images/SEEKERZ.jpg) 
+![Seekerz Logo](https://raw.githubusercontent.com/HelenChalmers/Seekerz-BackEndCapstone/master/Seekerz/wwwroot/images/SEEKERZ.jpg) 
 
 # Welcome to Seekerz
 
