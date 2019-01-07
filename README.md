@@ -12,3 +12,4 @@ A Job Tracker App for the Active Job Seeker
 4. Then "update-database"
 5. Run the Project 
 
+![Seekerz ERD](https://raw.githubusercontent.com/HelenChalmers/Seekerz-BackEndCapstone/master/Seekerz/wwwroot/images/SeekerzERD.jpg) 
