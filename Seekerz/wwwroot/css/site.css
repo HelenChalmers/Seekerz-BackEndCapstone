@@ -95,7 +95,7 @@ body {
     padding: 1em;
     box-shadow: 0 8px 6px -6px rgba( 0, 0, 0, .7);
     border-radius: 5px;
-    background-color: #5CE49A;
+    background-color: #a7f1c8;
     color: black;
 }
 
@@ -129,7 +129,7 @@ body {
 
 .JobDetailsOuter {
     display: flex;
-    align-content: center;
+    justify-content: center;
 }
 
 .JobDetails {
@@ -205,13 +205,13 @@ body {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-    background-color: #5CE49A;
+    background-color: #bedbf4;
     color: black;
 }
 
 /* Style the back side */
 .flip-card-back {
-    background-color: #5CE49A;
+    background-color: #bedbf4;
     color: black;
     transform: rotateY(180deg);
     text-align: center;
@@ -310,6 +310,19 @@ body {
 }
 
 .TaskDetailButtonsInner {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------CompanyDetailPage--------------------------------------------------------------------------*/
+.CompanyDetailButtonsOuter {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.CompanyDetailButtonsInner {
     flex-direction: row;
     justify-content: space-between;
 }
