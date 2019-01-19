@@ -10,7 +10,11 @@ namespace Seekerz.Models.JobViewModels
     {
         public Job Job { get; set; }
 
+        public Company UserCompany {get; set;}
+
         public List<SelectListItem> UsersCompanies { get; set; }
+
+        public ApplicationUser User { get; set; }
         
     }
 }
