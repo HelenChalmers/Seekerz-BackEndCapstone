@@ -13,15 +13,14 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="input-field">
-                
-                <input asp-for="Job.Position" class="form-control" value="Add a Company"/>
-                <span asp-validation-for="Job.Position" class="text-danger"></span>
+                @*<input id="new_company" asp-for="UserCompany.Name" class="form-control" />*@
+               @* <label for="new_company">Add a new Company</label>*@
             </div>
             <div class="form-group">
-                <input type="submit" value="Add" class="btn btn-info CreateButton"/>
+                <input type="submit" value="Add" class="btn btn-info CreateButton" />
             </div>
             <div class="form-group">
-                
+
                 <select asp-for="Job.CompanyId" class="form-control" asp-items="Model.UsersCompanies"></select>
                 <span asp-validation-for="Job.CompanyId" class="text-danger"></span>
             </div>
