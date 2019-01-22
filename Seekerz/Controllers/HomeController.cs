@@ -40,16 +40,12 @@ namespace Seekerz.Controllers
             var userjobs = _context.Job
                 .Where(j => j.UserId == user.Id && j.IsActive == true)
                 .ToListAsync();
-            //var applicationDbContext = _context.Job.Include(j => j.Company).Include(j => j.User);
+            
             
             return View(await userjobs);
         }
 
-        //[Authorize]
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Job.ToListAsync());
-        //}
+      
 
 
         public IActionResult About()
