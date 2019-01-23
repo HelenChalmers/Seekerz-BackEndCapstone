@@ -4,20 +4,24 @@
     ViewData["Title"] = "Details";
 }
 
+
+
+
 <h3 class="Mono">Question Details</h3>
 
 <div>
-   
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
             Question
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.Question)
         </dd>
         <dt>
-           Answer
+            Answer
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Answer)
@@ -36,8 +40,17 @@
         </dd>
     </dl>
 </div>
+@if (Model.User.UserName == User.Identity.Name.ToString())
+{
 <div>
     <a asp-action="Edit" asp-route-id="@Model.QAId" class="btn btn-info Editbutton"><i class="far fa-edit"></i></a> |
     <a asp-action="Delete" asp-route-id="@Model.QAId" class="btn btn-info DeleteButton"><i class="fas fa-trash"></i></a> |
     <a asp-action="Index" class="btn btn-info BackButton"><i class="fas fa-chevron-left"></i></a>
 </div>
+}
+else
+{
+<div>
+    <a asp-action="Index" class="btn btn-info BackButton"><i class="fas fa-chevron-left"></i></a>
+</div>
+}
