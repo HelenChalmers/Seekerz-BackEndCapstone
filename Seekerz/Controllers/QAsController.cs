@@ -99,14 +99,17 @@ namespace Seekerz.Controllers
             {
                 return NotFound();
             }
-
+             
             var qA = await _context.QA.FindAsync(id);
-            if (qA == null)
-            {
-                return NotFound();
-            }
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", qA.UserId);
-            return View(qA);
+            var user = await GetCurrentUserAsync();
+            if (qA.User == user) {
+                if (qA == null)
+                {
+                    return NotFound();
+                }
+                ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", qA.UserId);
+                return View(qA);
+            } else { return  RedirectToAction("Index", qA); };
         }
 
         // POST: QAs/Edit/5
@@ -136,7 +139,7 @@ namespace Seekerz.Controllers
 
                 //Add userId to Model
                 qA.UserId = user.Id;
-
+                
                 try
                 {
                     _context.Update(qA);
@@ -171,12 +174,16 @@ namespace Seekerz.Controllers
             var qA = await _context.QA
                 .Include(q => q.User)
                 .FirstOrDefaultAsync(m => m.QAId == id);
-            if (qA == null)
+            var user = await GetCurrentUserAsync();
+            if (qA.User == user)
             {
-                return NotFound();
-            }
+                if (qA == null)
+                {
+                    return NotFound();
+                }
 
-            return View(qA);
+                return View(qA);
+            } else  { return RedirectToAction("Index", qA); }
         }
 
 
