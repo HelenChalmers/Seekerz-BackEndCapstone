@@ -280,11 +280,17 @@ namespace Seekerz.Controllers
         }
 
         //Search Bar Function
+        //This makes the user to be logged in.  
         [Authorize]
+           //a Search Method that takes a string parameter "search"
         public async Task<IActionResult> SearchResults(string search)
         {
+            //this gets the user
             var user = await GetCurrentUserAsync();
-
+            //grabs all of the jobs of the current user based on the UserId of the position
+            //uses a .contain for the search -so whatever position contains what is put in the search is pulled up
+            //uses a .contain for the company - so the company that was added searches for the company that was typed in by the user.
+            //returns a list of positions based on either the company or positions that the user is searching for. 
             var searchBar = _context.Job
              .Where(y => y.UserId == user.Id)
              .Where(x => x.Position.Contains(search) ||
