@@ -39,7 +39,7 @@ namespace Seekerz.Controllers
             var userjobs = _context.Job
                 .Where(j => j.UserId == user.Id && j.IsActive == true)
                 .ToListAsync();
-            //var applicationDbContext = _context.Job.Include(j => j.Company).Include(j => j.User);
+            
 
             return View(await userjobs);
         }
@@ -111,8 +111,7 @@ namespace Seekerz.Controllers
                 UsersCompanies = usersCompanies
             };
 
-            //ViewData["CompanyId"] = new SelectList(_context.Company.Where(c => c.UserId == user.Id.ToString()), "CompanyId", "Name");
-            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            
             return View(viewmodel);
         }
 
@@ -171,7 +170,7 @@ namespace Seekerz.Controllers
 
             ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name", job.CompanyId);
 
-            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", job.UserId);
+           
             return View(job);
         }
 
@@ -224,7 +223,7 @@ namespace Seekerz.Controllers
             }
 
             ViewData["CompanyId"] = new SelectList(_context.Company, "CompanyId", "Name", job.CompanyId);
-            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", job.UserId);
+           
             return View(job);
 
         }
