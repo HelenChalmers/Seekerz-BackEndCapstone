@@ -53,7 +53,7 @@ namespace Seekerz.Controllers
             var userarchivedjobs = _context.Job
                 .Where(j => j.UserId == user.Id && j.IsActive == false)
                 .ToListAsync();
-            //var applicationDbContext = _context.Job.Include(j => j.Company).Include(j => j.User);
+           
 
             return View(await userarchivedjobs);
         }
