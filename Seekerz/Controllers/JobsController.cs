@@ -83,36 +83,54 @@ namespace Seekerz.Controllers
         
         public async Task<IActionResult> Create()
         {
+
+            //get current user
             var user = await GetCurrentUserAsync();
 
+            //get all the companies from database
             List<Company> AllCompanies = await _context.Company.Where(c => c.UserId == user.Id).ToListAsync();
 
+            //creating a select list of companies
             List<SelectListItem> usersCompanies = new List<SelectListItem>();
 
+            //Create a view model
+            JobCreateViewModel viewModel = new JobCreateViewModel();
+
+            //building up the select list 
             foreach (Company c in AllCompanies)
             {
-                SelectListItem sli = new SelectListItem();
-                sli.Text = c.Name;
-                sli.Value = c.CompanyId.ToString();
+                SelectListItem sli = new SelectListItem()
+                {
+                    //provide text to sli
+                    Text = c.Name,
+                    //give value to sli
+                    Value = c.CompanyId.ToString()
+                };
                 usersCompanies.Add(sli);
-            };
-            //Buils a select item "select company" and giving a value of 0
-            SelectListItem defaultSli = new SelectListItem
+            }
+            //Builds a select item "select company" and giving a value of 0
+            usersCompanies.Insert(0, new SelectListItem
             {
-                Text = "Select Company",
-                Value = "0"
-            };
+                Text = "Select an existing Company",
+                Value = ""
+            });
+            //SelectListItem defaultSli = new SelectListItem
+            //{
+            // Text = "Select Company",
+            //Value = "0"
+            //};
 
             //Sets it at position 0
-            usersCompanies.Insert(0, defaultSli);
+            // usersCompanies.Insert(0, defaultSli);
 
-            JobCreateViewModel viewmodel = new JobCreateViewModel
-            {
-                UsersCompanies = usersCompanies
-            };
+            //JobCreateViewModel viewmodel = new JobCreateViewModel
+            //{
+            //  UsersCompanies = usersCompanies
+            //};
+            viewModel.UsersCompanies = usersCompanies;
 
-            
-            return View(viewmodel);
+
+            return View(viewModel);
         }
 
         // POST: Jobs/Create
@@ -120,8 +138,10 @@ namespace Seekerz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create(JobCreateViewModel viewModel)
         {
+            
 
             //Remove User, UserId and IsActive
             ModelState.Remove("Job.User");
@@ -151,6 +171,37 @@ namespace Seekerz.Controllers
            
             return View(viewModel);
         }
+
+        // POST: Job/CreateCompany
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> CreateCompany(JobCreateViewModel newJob)
+        {
+            var user = await GetCurrentUserAsync();
+
+            // If the user is already in the ModelState
+            // Remove user from model state
+            ModelState.Remove("Job.User");
+            ModelState.Remove("Job.UserId");
+
+            // If model state is valid
+            if (ModelState.IsValid)
+            {
+                //If a user enters a new company name
+                if (newJob.UserCompany.Name != null)
+                {
+                    //Add that winery to the database
+                    _context.Add(newJob.UserCompany);
+
+                    await _context.SaveChangesAsync();
+                }
+                // Redirect to details view with id of product made using new object
+                return RedirectToAction(nameof(Create));
+            }
+            return View(newJob);
+        }
+    
 
         // GET: Jobs/Edit/5
         public async Task<IActionResult> Edit(int? id)
