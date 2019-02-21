@@ -191,7 +191,7 @@ namespace Seekerz.Controllers
                 //If a user enters a new company name
                 if (newJob.UserCompany.Name != null)
                 {
-                    //Add that winery to the database
+                    //Add that company to the database
                     _context.Add(newJob.UserCompany);
 
                     await _context.SaveChangesAsync();
