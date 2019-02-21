@@ -188,6 +188,14 @@ namespace Seekerz.Controllers
             // If model state is valid
             if (ModelState.IsValid)
             {
+
+                
+
+                //Add user to model
+                newJob.Job.User = user;
+
+                //Add userId to Model
+                newJob.Job.UserId = user.Id;
                 //If a user enters a new company name
                 if (newJob.UserCompany.Name != null)
                 {
