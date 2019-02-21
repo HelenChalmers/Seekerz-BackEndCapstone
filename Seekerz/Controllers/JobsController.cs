@@ -184,6 +184,8 @@ namespace Seekerz.Controllers
             // Remove user from model state
             ModelState.Remove("Job.User");
             ModelState.Remove("Job.UserId");
+            ModelState.Remove("UserCompany.User");
+            ModelState.Remove("UserCompany.UserId");
 
             // If model state is valid
             if (ModelState.IsValid)
@@ -192,10 +194,10 @@ namespace Seekerz.Controllers
                 
 
                 //Add user to model
-                newJob.Job.User = user;
+                newJob.UserCompany.User = user;
 
                 //Add userId to Model
-                newJob.Job.UserId = user.Id;
+                newJob.UserCompany.UserId = user.Id;
                 //If a user enters a new company name
                 if (newJob.UserCompany.Name != null)
                 {
