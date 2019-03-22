@@ -20,7 +20,7 @@ A Job Tracker App for the Active Job Seeker.  Seekerz was created for users that
 
 ## Acknowledgements
 
-Special Thanks to Steve Brownlee, Brenda Long, Jenna Solis, Kimmy Bird, Meg Ducharme, Andy Collins and the rest of the NSS crew for pouring their hearts and knowledge into me and my amazing cohort. 
+Special Thanks to Steve Brownlee, Brenda Long, Jenna Solis, Kimmy Bird, Meg Ducharme, Andy Collins and the rest of the NSS crew for pouring their hearts and knowledge into me and my amazing cohort!
 
 ## Check It Out! 
 
