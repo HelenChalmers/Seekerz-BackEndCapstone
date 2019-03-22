@@ -2,15 +2,8 @@
 
 # Welcome to Seekerz
 
-A Job Tracker App for the Active Job Seeker.
+A Job Tracker App for the Active Job Seeker.  Seekerz was created for users that are in the job hunt, to help organize that process. A user can log in and add a position they are applying for.  A user can add tasks to that position and archive that position when it is no longer on the table.  I invite you to check it out!  [Seekerz](https://seekerz.azurewebsites.net)  - login: hchalmers23@gmail.com PW: Helen23*
 
-## How to Run
-
-1. Clone down this repo and cd into project
-2. In your teminal/git bash, Start Seekerz.sln
-3. In your package manager console, write "add-migration Initial"
-4. Then "update-database"
-5. Run the Project 
 
 ## Technologies
 
